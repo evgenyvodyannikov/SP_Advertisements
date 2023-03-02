@@ -8,7 +8,7 @@ const getWebServerUrl = () => {
     return webAbsoluteUrl.replace(webServerRelativeUrl, "");
 }
 
-const getListItems = (listName) => {
+const displayListItems = (listName) => {
 
     const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
     const RequestURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/items`;
@@ -23,17 +23,16 @@ const getListItems = (listName) => {
         },
         success: function (data) {
             let items = data.d.results;
+
+            if(listName == 'Categories'){
+                fillCategories(items);
+            }
+            else if (listName == 'Advertisements'){
+                fillAdvertisements(items);
+            }
+            
             console.log(items);
-            let optionsContainer = $('#Categories');
-
-            let optionsHTML = `<option value="">Any</option>`;
-
-            $.each(items, function (index, item) {
-                optionsHTML += `<option value="">${item.Title}</option>`;
-                console.log(item.Title)
-            });
-
-            optionsContainer.html(optionsHTML);
+            
         },
         error: function (err) {
            console.log("There was an error");
@@ -42,10 +41,27 @@ const getListItems = (listName) => {
      });
 }
 
+const fillCategories = (items) => {
+    
+    let optionsContainer = $('#Categories');
+
+    let optionsHTML = `<option value="">Any</option>`;
+
+    $.each(items, function (index, item) {
+        optionsHTML += `<option value="">${item.Title}</option>`;
+        console.log(item.Title)
+    });
+
+    optionsContainer.html(optionsHTML);
+}
+
+const fillAdvertisements = (items) => {
+
+}
 
 $(document).ready( function() {
 
-    getListItems("Categories");
+    displayListItems('Categories');
     
  });
 
