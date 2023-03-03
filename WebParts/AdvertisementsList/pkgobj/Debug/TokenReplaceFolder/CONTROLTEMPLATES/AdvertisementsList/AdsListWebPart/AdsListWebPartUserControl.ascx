@@ -59,46 +59,7 @@
 						<div class="content-box">
 							
 							<div class="news-box section-padding">
-								<div class="news-item">
-									<div class="row">
-										<div class="col-sm-4 col-xs-12">
-											<div class="img"><a href=""><img src="http://sharepoint:2013/SiteAssets/marketplace/images/news.png" alt=""></a></div>
-										</div>
-										<div class="col-sm-8 col-xs-12">
-											<div class="text">
-												<div class="date date-bottom">20 марта</div>
-												<div class="status">Сдам в аренду</div>
-												<div class="name"><a href="">Победа в матче минифутболу футболу среди команд Е лиги</a></div>
-												<div class="ico-name">
-													<a href="">
-													<div class="ico"><img src="http://sharepoint:2013/SiteAssets/marketplace/images/face.png" alt=""></div>
-													<div class="n">Николай Воложский</div>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="news-item">
-									<div class="row">
-										<div class="col-sm-4 col-xs-12">
-											<div class="img"><a href=""><img src="http://sharepoint:2013/SiteAssets/marketplace/images/news.png" alt=""></a></div>
-										</div>
-										<div class="col-sm-8 col-xs-12">
-											<div class="text">
-												<div class="date date-bottom">20 марта</div>
-												<div class="status">Сдам в аренду</div>
-												<div class="name"><a href="">Победа в матче минифутболу футболу среди команд Е лиги</a></div>
-												<div class="ico-name">
-													<a href="">
-													<div class="ico"><img src="http://sharepoint:2013/SiteAssets/marketplace/images/face.png" alt=""></div>
-													<div class="n">Николай Воложский</div>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								
 								<div class="pager">
 									<ul>
 										<li class="active"><a href="">1</a></li>
