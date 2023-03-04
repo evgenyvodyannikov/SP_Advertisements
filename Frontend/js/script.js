@@ -154,6 +154,7 @@ const fillAdvertisements = (items) => {
 
     });
 
+    $('div.news-item.pending').remove();
     advertisementsContainer.prepend(advertisementsHTML);
 }
 

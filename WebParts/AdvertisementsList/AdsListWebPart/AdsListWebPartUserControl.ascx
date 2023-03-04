@@ -57,9 +57,8 @@
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
 						<div class="content-box">
-							
 							<div class="news-box section-padding">
-								
+								<div class="news-item pending">Pending...</div>
 								<div class="pager">
 									<ul>
 										<li class="active"><a href="">1</a></li>

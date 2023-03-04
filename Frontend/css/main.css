@@ -1851,6 +1851,11 @@ p > a:hover{
 	display: none;
 }
 
+.pending {
+	font-size: 45px;
+	text-align: center;
+}
+
 
 
 
