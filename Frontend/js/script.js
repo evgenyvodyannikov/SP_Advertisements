@@ -1,19 +1,11 @@
+var currentPage = 1;
+var itemsCount = 0;
 
-// TODO: Remove
-const getWebServerUrl = () => {
-
-    const webAbsoluteUrl = _spPageContextInfo.webAbsoluteUrl;
-    const webServerRelativeUrl = _spPageContextInfo.webServerRelativeUrl;
-
-    return webAbsoluteUrl.replace(webServerRelativeUrl, "");
-}
-
-const displayListItems = (listName) => {
+const displayCategories = () => {
 
     const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
+    const listName = 'Categories';
     const requestURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/items`;
-
-    console.log(requestURL);
 
      $.ajax({
         url: requestURL,
@@ -22,17 +14,61 @@ const displayListItems = (listName) => {
            "accept": "application/json;odata=verbose"
         },
         success: function (data) {
-            let items = data.d.results;
 
-            if(listName == 'Categories'){
-                fillCategories(items);
+            let items = data.d.results;
+            let optionsContainer = $('#Categories');
+            let optionsHTML = `<option value="">Any</option>`;
+
+            $.each(items, function (index, item) {
+                optionsHTML += `<option value="">${item.Title}</option>`;
+            });
+
+            optionsContainer.html(optionsHTML);           
+        },
+        error: function (err) {
+           console.log("There was an error" + err);
+        }
+     });
+}
+
+const displayAdvertisements = (page) => {
+
+    const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
+    const listName = 'Advertisements';
+    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/ItemCount`;
+
+    if(itemsCount == 0){
+
+        $.ajax({
+            url: requestItemCountURL,
+            type: "GET",
+            headers: {
+               "accept": "application/json;odata=verbose"
+            },
+            async: false,
+            success: function (data) {
+                itemsCount = data.d.Title;          
+            },
+            error: function (err) {
+               console.log("There was an error" + err);
             }
-            else if (listName == 'Advertisements'){
-                fillAdvertisements(items);
-            }
-            
-            console.log(items);
-            
+         });
+
+    };
+
+    let filter = `ID ge ${(page - 1) * 5 + 1} and ID le ${page * 5}`
+    const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?$filter=${filter}`;
+
+    console.log(filter);
+
+     $.ajax({
+        url: requestItemsURL,
+        type: "GET",
+        headers: {
+           "accept": "application/json;odata=verbose"
+        },
+        success: function (data) {
+            fillAdvertisements(data.d.results);          
         },
         error: function (err) {
            console.log("There was an error" + err);
@@ -56,8 +92,7 @@ const getUserInfo = (userID) => {
             "Accept": "application/json; odata=verbose"      
         },   
         async: false,       
-        success: function(data) {
-            console.log(data.d);      
+        success: function(data) {     
             userName = data.d.Title;  
             loginName = data.d.LoginName;     
         },      
@@ -87,8 +122,6 @@ const getListProperty = (listName, itemId, propertyName) => {
         },   
         async: false,       
         success: function(data) {
-            console.log('check me');
-            console.log(data.d);
             result = data.d.Title;  
         },      
         error: function(err) {      
@@ -108,7 +141,6 @@ const fillCategories = (items) => {
 
     $.each(items, function (index, item) {
         optionsHTML += `<option value="">${item.Title}</option>`;
-        console.log(item.Title)
     });
 
     optionsContainer.html(optionsHTML);
@@ -158,10 +190,14 @@ const fillAdvertisements = (items) => {
     advertisementsContainer.prepend(advertisementsHTML);
 }
 
+const MakeUpPagination = (itemsCount) => {
+
+}
+
 $(document).ready( function() {
 
-    displayListItems('Categories');
-    displayListItems('Advertisements');
+    displayCategories();
+    displayAdvertisements(1);
     
  });
 
