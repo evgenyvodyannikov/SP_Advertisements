@@ -1,4 +1,9 @@
-var currentPage = 1;
+var currentPage = parseInt(window.localStorage.getItem('currentPage'));
+console.log(currentPage)
+if(!currentPage){
+    currentPage = 1;
+}
+
 var pageCount = 0;
 var pageSize = 5;
 
@@ -59,7 +64,7 @@ const displayAdvertisements = (page) => {
          for(i = 1; i <= pageCount; i++){
 
             let elClass = 'filter';
-            if(i == 1){
+            if(i == currentPage){
                 elClass += ' active'; 
             }
 
@@ -217,6 +222,7 @@ const paginate = (page, target) => {
     $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
 
     currentPage = page;
+    window.localStorage.setItem('currentPage', currentPage);
     displayAdvertisements(page);
 }
 
@@ -232,6 +238,7 @@ const paginateNext = () => {
         $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
 
         currentPage += 1;
+        window.localStorage.setItem('currentPage', currentPage);
         displayAdvertisements(currentPage);
     }
 }
@@ -239,8 +246,7 @@ const paginateNext = () => {
 $(document).ready( function() {
 
     displayCategories();
-    displayAdvertisements(1);
-    
+    displayAdvertisements(currentPage);
  });
 
 
