@@ -1,5 +1,6 @@
 var currentPage = 1;
-var itemsCount = 0;
+var pageCount = 0;
+var pageSize = 5;
 
 const displayCategories = () => {
 
@@ -37,7 +38,7 @@ const displayAdvertisements = (page) => {
     const listName = 'Advertisements';
     const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/ItemCount`;
 
-    if(itemsCount == 0){
+    if(pageCount == 0){
 
         $.ajax({
             url: requestItemCountURL,
@@ -47,18 +48,35 @@ const displayAdvertisements = (page) => {
             },
             async: false,
             success: function (data) {
-                itemsCount = data.d.Title;          
+                pageCount = Math.ceil(data.d.ItemCount / pageSize);          
             },
             error: function (err) {
                console.log("There was an error" + err);
             }
          });
 
+         let pager = $('div.pager ul');
+         for(i = 1; i <= pageCount; i++){
+
+            let elClass = 'filter';
+            if(i == 1){
+                elClass += ' active'; 
+            }
+
+            pager.append(
+                `<li id="${i}" class="${elClass}"><a  href="#${i}" onclick="paginate(${i}, this)">${i}</a></li>`
+            );
+
+         }
+
+         pager.append(
+            `<li id="next" class="filter"><a  href="#next" onclick="paginateNext()">Next</a></li>`
+         );
     };
 
-    let filter = `ID ge ${(page - 1) * 5 + 1} and ID le ${page * 5}`
+    let filter = `ID ge ${(page - 1) * pageSize + 1} and ID le ${page * pageSize}`
     const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?$filter=${filter}`;
-
+    console.log(page);
     console.log(filter);
 
      $.ajax({
@@ -190,8 +208,32 @@ const fillAdvertisements = (items) => {
     advertisementsContainer.prepend(advertisementsHTML);
 }
 
-const MakeUpPagination = (itemsCount) => {
+const paginate = (page, target) => {
 
+    $('.filter').removeClass('active');
+    $(target).parent().addClass('active');
+
+    $('.news-item').remove();
+    $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
+
+    currentPage = page;
+    displayAdvertisements(page);
+}
+
+const paginateNext = () => {
+
+    if(currentPage + 1 <= pageCount){
+        
+        $('.filter').removeClass('active');
+
+        $(`div.pager ul li#${currentPage+1}`).addClass('active');
+
+        $('.news-item').remove();
+        $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
+
+        currentPage += 1;
+        displayAdvertisements(currentPage);
+    }
 }
 
 $(document).ready( function() {

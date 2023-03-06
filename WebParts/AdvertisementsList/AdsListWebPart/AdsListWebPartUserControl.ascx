@@ -61,12 +61,6 @@
 								<div class="news-item pending">Pending...</div>
 								<div class="pager">
 									<ul>
-										<li class="active"><a href="">1</a></li>
-										<li><a href="">2</a></li>
-										<li><a href="">3</a></li>
-										<li><a href="">4</a></li>
-										<li><a href="">5</a></li>
-										<li><a href="">Следующая ></a></li>
 									</ul>
 								</div>
 							</div>

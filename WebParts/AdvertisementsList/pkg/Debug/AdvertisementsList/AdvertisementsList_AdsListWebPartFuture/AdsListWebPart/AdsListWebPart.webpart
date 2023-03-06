@@ -2,7 +2,7 @@
 <webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="AdvertisementsList.AdsListWebPart.AdsListWebPart, AdvertisementsList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0acec87e60f7a1fe" />
+      <type name="AdvertisementsList.AdsListWebPart, AdvertisementsList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0acec87e60f7a1fe" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
