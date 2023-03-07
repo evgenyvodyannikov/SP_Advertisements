@@ -7,6 +7,9 @@ if(!currentPage){
 var pageCount = 0;
 var pageSize = 5;
 
+var isUsersAdsSelected = false;
+var selectedCategoryId = 0;
+
 const displayCategories = () => {
 
     const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
@@ -22,11 +25,13 @@ const displayCategories = () => {
         success: function (data) {
 
             let items = data.d.results;
+            console.log(items);
             let optionsContainer = $('#Categories');
-            let optionsHTML = `<option value="">Any</option>`;
+            optionsContainer.change(optionSelected);
+            let optionsHTML = `<option value="0">Any</option>`;
 
             $.each(items, function (index, item) {
-                optionsHTML += `<option value="">${item.Title}</option>`;
+                optionsHTML += `<option value="${item.Id}">${item.Title}</option>`;
             });
 
             optionsContainer.html(optionsHTML);           
@@ -39,11 +44,21 @@ const displayCategories = () => {
 
 const displayAdvertisements = (page) => {
 
+
+    $('.news-item').remove();
+    $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
+
     const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
     const listName = 'Advertisements';
-    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/ItemCount`;
-
-    if(pageCount == 0){
+    let filter = '';
+    if(selectedCategoryId != 0){
+        filter = `?$filter=Category eq ${selectedCategoryId}`
+    }
+    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items${filter}`;
+    console.log('selectedCategoryId' + selectedCategoryId)
+    console.log(requestItemCountURL)
+    
+    if(pageCount == 0 || selectedCategoryId != 0){
 
         $.ajax({
             url: requestItemCountURL,
@@ -53,14 +68,18 @@ const displayAdvertisements = (page) => {
             },
             async: false,
             success: function (data) {
-                pageCount = Math.ceil(data.d.ItemCount / pageSize);          
-            },
+                pageCount = Math.ceil(data.d.results.length / pageSize);       
+                console.log(data.d.results);
+                console.log('new page count = ' + pageCount)   
+            },  
             error: function (err) {
                console.log("There was an error" + err);
             }
          });
 
          let pager = $('div.pager ul');
+         pager.html('');
+
          for(i = 1; i <= pageCount; i++){
 
             let elClass = 'filter';
@@ -79,9 +98,16 @@ const displayAdvertisements = (page) => {
          );
     };
 
-    let filter = `ID ge ${(page - 1) * pageSize + 1} and ID le ${page * pageSize}`
-    const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?$filter=${filter}`;
-    console.log(page);
+    
+    filter = `$filter=ID ge ${(page - 1) * pageSize + 1} and ID le ${page * pageSize}`
+
+    if(selectedCategoryId != 0){
+        filter = `$filter=Category eq ${selectedCategoryId}&$top=5`
+        
+    }
+
+    const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${filter}`;
+    console.log(requestItemsURL);
     console.log(filter);
 
      $.ajax({
@@ -91,46 +117,15 @@ const displayAdvertisements = (page) => {
            "accept": "application/json;odata=verbose"
         },
         success: function (data) {
-            fillAdvertisements(data.d.results);          
+            console.log(data.d.results)
+            console.log(data.d.__next)
+            fillAdvertisements(data.d.results);   
         },
         error: function (err) {
            console.log("There was an error" + err);
         }
      });
 }
-
-const getUserInfo = (userID) => {   
-
-    const requestURL = `${_spPageContextInfo.webAbsoluteUrl}/_api/web/getuserbyid('${userID}')`;
-    
-    let userName = undefined;
-    let loginName = undefined;
-    let userImage = undefined;
-    let imageSize = 'L';
-
-    $.ajax({      
-        url: requestURL,      
-        type: "GET",      
-        headers: {      
-            "Accept": "application/json; odata=verbose"      
-        },   
-        async: false,       
-        success: function(data) {     
-            userName = data.d.Title;  
-            loginName = data.d.LoginName;     
-        },      
-        error: function(err) {      
-            console.log("There was an error" + err);     
-        }      
-    });
-
-    userImage = `${_spPageContextInfo.siteAbsoluteUrl}/_layouts/15/userphoto.aspx?size=${imageSize}&accountname=${loginName}`
-
-    return {
-        Name: userName, 
-        Image: userImage,
-    };
-}  
 
 const getListProperty = (listName, itemId, propertyName) => {
 
@@ -178,6 +173,7 @@ const fillAdvertisements = (items) => {
 
         let category = getListProperty('Categories', item.CategoryId, 'Title');
         let userInfo = getUserInfo(item.AuthorId);
+        let userLink = getUserLink(item.AuthorId);
 
         advertisementsHTML += `
         
@@ -193,9 +189,11 @@ const fillAdvertisements = (items) => {
                     <div class="text">
                         <div class="date date-bottom">${item.Created}</div>
                         <div class="status">${category}</div>
-                        <div class="name"><a href>${item.Title}</a></div>
+                        <div class="name">
+                            <a href="${_spPageContextInfo.webAbsoluteUrl}/Pages/FullAdvertisement.aspx?$id=${item.Id}" target="_blank">${item.Title}</a>
+                        </div>
                         <div class="ico-name">
-                            <a href>
+                            <a href=${userLink}>
                                 <div class="ico">
                                     <img src="${userInfo.Image}" alt>    
                                 </div>
@@ -218,9 +216,6 @@ const paginate = (page, target) => {
     $('.filter').removeClass('active');
     $(target).parent().addClass('active');
 
-    $('.news-item').remove();
-    $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
-
     currentPage = page;
     window.localStorage.setItem('currentPage', currentPage);
     displayAdvertisements(page);
@@ -234,19 +229,27 @@ const paginateNext = () => {
 
         $(`div.pager ul li#${currentPage+1}`).addClass('active');
 
-        $('.news-item').remove();
-        $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
-
         currentPage += 1;
         window.localStorage.setItem('currentPage', currentPage);
         displayAdvertisements(currentPage);
     }
 }
 
+const optionSelected = () => {
+
+    let selectedValue = $("Select#Categories option:selected").val();
+    selectedCategoryId = selectedValue;
+    displayAdvertisements(1);
+
+}
+
 $(document).ready( function() {
 
     displayCategories();
     displayAdvertisements(currentPage);
+    
+
+
  });
 
 

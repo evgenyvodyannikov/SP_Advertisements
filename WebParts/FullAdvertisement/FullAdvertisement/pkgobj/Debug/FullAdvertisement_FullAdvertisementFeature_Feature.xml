@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="FullAdvertisement" Id="deaa3cff-97fb-4953-b039-dce2e809325e" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="FullAdvertisementWebPart\Elements.xml" />
+    <ElementFile Location="FullAdvertisementWebPart\FullAdvertisementWebPart.webpart" />
+  </ElementManifests>
+</Feature>

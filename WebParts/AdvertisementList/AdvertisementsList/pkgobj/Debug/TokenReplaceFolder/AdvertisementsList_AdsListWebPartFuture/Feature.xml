@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="AdvertisementsList" Id="4f219c20-cee5-4f3b-bd8b-69e3a5e40dd7" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="AdsListWebPart\Elements.xml" />
+    <ElementFile Location="AdsListWebPart\AdsListWebPart.webpart" />
+  </ElementManifests>
+</Feature>

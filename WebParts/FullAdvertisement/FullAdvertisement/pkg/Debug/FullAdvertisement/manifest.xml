@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="d196d64b-670b-45bf-b1e9-5064f9d1d8e1" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="FullAdvertisement.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="FullAdvertisement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=275693de82c2ca55" Namespace="FullAdvertisement.FullAdvertisementWebPart" TypeName="*" SafeAgainstScript="True" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="CONTROLTEMPLATES\FullAdvertisement\FullAdvertisementWebPart\FullAdvertisementWebPartUserControl.ascx" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="FullAdvertisement_FullAdvertisementFeature\Feature.xml" />
+  </FeatureManifests>
+</Solution>

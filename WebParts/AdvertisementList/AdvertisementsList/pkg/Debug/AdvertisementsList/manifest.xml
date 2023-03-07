@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="d6ec3e52-7e87-46a1-8a93-742377f89641" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="AdvertisementsList.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="AdvertisementsList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0acec87e60f7a1fe" Namespace="AdvertisementsList.AdsListWebPart" TypeName="*" SafeAgainstScript="True" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="CONTROLTEMPLATES\AdvertisementsList\AdsListWebPart\AdsListWebPartUserControl.ascx" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="AdvertisementsList_AdsListWebPartFuture\Feature.xml" />
+  </FeatureManifests>
+</Solution>
