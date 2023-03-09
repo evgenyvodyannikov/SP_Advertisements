@@ -1856,10 +1856,28 @@ p > a:hover{
 	text-align: center;
 }
 
+.form-control {
+	display: grid;
+	grid-template-areas: "select";
+	align-items: center;
+	position: relative;
+	width: 50%;
+	font-size: 18px;
+}
 
+.inp {
+	margin: 5px 0 10px 0;
+}
 
+.ch {
+	font-size: 18px;
+	margin: 5px 0 10px 0;
+}
 
-
+.toping-box .btn {
+	font-size: 18px;
+	align-content: center;
+}
 
 
 

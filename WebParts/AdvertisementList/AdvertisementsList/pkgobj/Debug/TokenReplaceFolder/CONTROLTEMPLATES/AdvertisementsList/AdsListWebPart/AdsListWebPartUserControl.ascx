@@ -39,7 +39,7 @@
  
 					<div class="inp">
 						<p class="label">Категории</p>
-						<select id="Categories">
+						<select class="form-control" id="Categories">
 							<option value="">Any</option>
                             <option disabled value="">Pending...</option>
 						</select>
@@ -48,7 +48,7 @@
 						<input type="checkbox" id="c1">
 						<label for="c1">Мои объявления</label>
 					</div>
-					<input class="btn" type="submit" value="+ Добавить объявлени">
+					<input class="btn" type="submit" value="+ Create Advertisement">
 				</div>
 			</div>
 		</div>

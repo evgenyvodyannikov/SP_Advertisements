@@ -154,7 +154,6 @@ const getListProperty = (listName, itemId, propertyName) => {
 const fillCategories = (items) => {
     
     let optionsContainer = $('#Categories');
-
     let optionsHTML = `<option value="">Any</option>`;
 
     $.each(items, function (index, item) {

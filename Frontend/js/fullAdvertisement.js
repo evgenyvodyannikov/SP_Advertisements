@@ -58,7 +58,7 @@ const fillAdvertisementData = (data) => {
 
 }
 
-let id = getQueryStringParameter("$id");
+let id = getQueryStringParameter("$id") || 1;
 
 if (id !== null) {
 
