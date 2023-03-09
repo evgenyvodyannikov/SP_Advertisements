@@ -6,9 +6,11 @@ if(!currentPage){
 
 var pageCount = 0;
 var pageSize = 5;
+var lastItemId = 1;
 
-var isUsersAdsSelected = false;
 var selectedCategoryId = 0;
+var isLookingActiveAds = true;
+var isLookingUserAds = false;
 
 const displayCategories = () => {
 
@@ -27,7 +29,7 @@ const displayCategories = () => {
             let items = data.d.results;
             console.log(items);
             let optionsContainer = $('#Categories');
-            optionsContainer.change(optionSelected);
+            optionsContainer.change(selectCategory);
             let optionsHTML = `<option value="0">Any</option>`;
 
             $.each(items, function (index, item) {
@@ -42,71 +44,100 @@ const displayCategories = () => {
      });
 }
 
+const getFilterRequestUrl = (filter = '') => {
+    
+    if(!filter) {
+        filter = '$filter=';
+    }
+    else {
+        filter += ' and '
+    }
+
+    if(isLookingActiveAds) {
+        filter += `Status eq 'Active'`;
+    }
+    else {
+        filter += `Status eq 'Moderation'`;
+    }
+    
+    if(selectedCategoryId != 0) {
+        filter += ` and Category eq ${selectedCategoryId}`;
+    }
+
+    return filter;
+}
+
 const displayAdvertisements = (page) => {
 
-
+    // Get count of Items for current selected conditions
     $('.news-item').remove();
     $('div.news-box.section-padding').prepend('<div class="news-item pending">Pending...</div>');
 
     const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
     const listName = 'Advertisements';
-    let filter = '';
-    if(selectedCategoryId != 0){
-        filter = `?$filter=Category eq ${selectedCategoryId}`
-    }
-    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items${filter}`;
+
+    let lookingFields = '$Select=Id,Category/Id,Status&$expand=Category';
+    let filter = getFilterRequestUrl();
+
+    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${lookingFields}&${filter}`;
     console.log('selectedCategoryId' + selectedCategoryId)
     console.log(requestItemCountURL)
-    
-    if(pageCount == 0 || selectedCategoryId != 0){
 
-        $.ajax({
-            url: requestItemCountURL,
-            type: "GET",
-            headers: {
-               "accept": "application/json;odata=verbose"
-            },
-            async: false,
-            success: function (data) {
-                pageCount = Math.ceil(data.d.results.length / pageSize);       
-                console.log(data.d.results);
-                console.log('new page count = ' + pageCount)   
-            },  
-            error: function (err) {
-               console.log("There was an error" + err);
-            }
-         });
+    $.ajax({
+        url: requestItemCountURL,
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose"
+        },
+        async: false,
+        success: function (data) {
+            pageCount = Math.ceil(data.d.results.length / pageSize);  
+            lastItemId = data.d.results[0].Id;     
+            console.log(data.d.results);
+            console.log('new page count = ' + pageCount)   
+        },  
+        error: function (err) {
+            console.log("There was an error" + err);
+        }
+    });
 
-         let pager = $('div.pager ul');
-         pager.html('');
+    // Clear the Pager element
+    let pager = $('div.pager ul');
+    pager.html('');
 
-         for(i = 1; i <= pageCount; i++){
-
-            let elClass = 'filter';
-            if(i == currentPage){
-                elClass += ' active'; 
-            }
-
-            pager.append(
-                `<li id="${i}" class="${elClass}"><a  href="#${i}" onclick="paginate(${i}, this)">${i}</a></li>`
-            );
-
-         }
-
-         pager.append(
-            `<li id="next" class="filter"><a  href="#next" onclick="paginateNext()">Next</a></li>`
-         );
-    };
-
-    
-    filter = `$filter=ID ge ${(page - 1) * pageSize + 1} and ID le ${page * pageSize}`
-
-    if(selectedCategoryId != 0){
-        filter = `$filter=Category eq ${selectedCategoryId}&$top=5`
-        
+    // Display warning if there is no items to show
+    if(pageCount == 0){
+        $('.news-item').remove();
+        $('div.news-box.section-padding').prepend('<div class="news-item pending">There is no items to display...</div>');
+        return;
     }
 
-    const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${filter}`;
+    // Fill the Pager element
+    for(i = 1; i <= pageCount; i++){
+
+        let elClass = 'filter';
+        if(i == currentPage){
+            elClass += ' active'; 
+        }
+
+        pager.append(
+            `<li id="${i}" class="${elClass}"><a  href="#${i}" onclick="paginate(${i}, this)">${i}</a></li>`
+        );
+
+        }
+
+    pager.append(
+        `<li id="next" class="filter"><a  href="#next" onclick="paginateNext()">Next</a></li>`
+    );
+
+    // Prepare to get Items
+
+    skipToken = `$skiptoken=Paged=TRUE&p_ID=${lastItemId}&$top=${pageSize}`
+
+    filter = `$filter=ID ge ${(page - 1) * pageSize + 1} and ID le ${page * pageSize}`
+    filter = getFilterRequestUrl(filter);
+
+    const requestItemsURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${filter}&${skipToken}`;
     console.log(requestItemsURL);
     console.log(filter);
 
@@ -125,6 +156,13 @@ const displayAdvertisements = (page) => {
            console.log("There was an error" + err);
         }
      });
+}
+
+const getSkipToken = (page) => {
+
+    /// example 2
+
+    skipTokent = `$skiptoken=Paged=TRUE&p_ID=${lastItemId}&$top=${pageSize}`
 }
 
 const getListProperty = (listName, itemId, propertyName) => {
@@ -215,8 +253,7 @@ const paginate = (page, target) => {
     $('.filter').removeClass('active');
     $(target).parent().addClass('active');
 
-    currentPage = page;
-    window.localStorage.setItem('currentPage', currentPage);
+    updateCurrentPage(page);
     displayAdvertisements(page);
 }
 
@@ -228,17 +265,33 @@ const paginateNext = () => {
 
         $(`div.pager ul li#${currentPage+1}`).addClass('active');
 
-        currentPage += 1;
-        window.localStorage.setItem('currentPage', currentPage);
+        updateCurrentPage(currentPage += 1);
         displayAdvertisements(currentPage);
     }
 }
 
-const optionSelected = () => {
+const updateCurrentPage = (param) => {
+    currentPage = param;
+    window.localStorage.setItem('currentPage', currentPage);
+} 
+
+const selectCategory = () => {
 
     let selectedValue = $("Select#Categories option:selected").val();
     selectedCategoryId = selectedValue;
     displayAdvertisements(1);
+
+}
+
+const selectStatus = (status, target) => {
+    
+    isLookingActiveAds = status == 'Active' ? true : false;
+
+    $('.choice').removeClass('active');
+    $(target).addClass('active');
+
+    updateCurrentPage(1)
+    displayAdvertisements(currentPage);
 
 }
 

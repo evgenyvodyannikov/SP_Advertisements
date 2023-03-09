@@ -36,20 +36,30 @@
 					<li><a hre	f="">Отдел прогназирования спроса</a></li>
 				</ul>
 				<div class="title">Доска объявлений</div>
- 
-					<div class="inp">
-						<p class="label">Категории</p>
-						<select class="form-control" id="Categories">
-							<option value="">Any</option>
-                            <option disabled value="">Pending...</option>
-						</select>
-					</div>
-					<div class="ch">
-						<input type="checkbox" id="c1">
-						<label for="c1">Мои объявления</label>
-					</div>
-					<input class="btn" type="submit" value="+ Create Advertisement">
-				</div>
+                    <div class="first-row">
+                        <div class="choices-inp">
+						    <p class="label">Объявления</p>
+						    <div class="choices">
+							    <a href="#active" class="choice active" onclick="selectStatus('Active', this)">Активные</a>
+							    <a href="#moderation" class="choice" onclick="selectStatus('Moderation', this)">На модерации</a>
+						    </div>
+					    </div>
+					    <div class="inp">
+						    <p class="label">Категории</p>
+						    <select class="form-control" id="Categories">
+							    <option value="">Any</option>
+                                <option disabled value="">Pending...</option>
+						    </select>
+					    </div>
+					    <input class="btn" type="submit" value="+ Create Advertisement">
+				    </div>
+                    <div class="second-row">
+                         <div class="ch">
+						    <input type="checkbox" id="c1">
+						    <label for="c1">Мои объявления</label>
+					    </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 		<div class="container">

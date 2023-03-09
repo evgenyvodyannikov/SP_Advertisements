@@ -1861,22 +1861,74 @@ p > a:hover{
 	grid-template-areas: "select";
 	align-items: center;
 	position: relative;
-	width: 50%;
+	width: 70%;
 	font-size: 18px;
+	margin-top: 5px;
 }
 
 .inp {
-	margin: 5px 0 10px 0;
+	display: block;
+}
+
+.choices-inp {
+	display: block;
+	margin-right: 15px;
+}
+
+.choices > .choice {
+	font-size: 18px;
+	background-color: rgb(201, 201, 201);
+	outline: none;
+	text-decoration: none;
+	display: inline-block;
+	margin-right: 0.625%;
+	text-align: center;
+	line-height: 1.5;
+	color: black;
+	padding: 5px;
+}
+
+.choices > .choice.active {
+	background-color: #f68c28;
+	color: #FFF;
 }
 
 .ch {
-	font-size: 18px;
+	font-size: 21px;
 	margin: 5px 0 10px 0;
 }
 
 .toping-box .btn {
 	font-size: 18px;
 	align-content: center;
+	width: 70%;
+	background-color: #f68c28;
+	color: #FFF;
+	margin: 20px 10px 0px 0px;
+}
+
+.toping-box .btn:hover{
+	background: #f68c28;
+}
+
+.toping-box .btn :hover{
+	background-color: #f89538;
+}
+
+.first-row {
+	display: grid;
+   	grid-template-columns: repeat(3, 1fr);
+	width: 70%;
+	align-content: space-between;
+	margin-top: 10px;
+}
+
+.second-row {
+	margin-top: 10px;
+}
+
+.inp > .label {
+	margin-right: 10px;
 }
 
 
