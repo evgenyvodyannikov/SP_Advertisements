@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" AlwaysForceInstall="TRUE" Title="Advertisement List" Id="81822186-063b-47ff-ab30-3930444dd621" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="AdvertisementListWebPart\Elements.xml" />
+    <ElementFile Location="AdvertisementListWebPart\AdvertisementListWebPart.webpart" />
+    <ElementManifest Location="EditAdvertisementWebPart\Elements.xml" />
+    <ElementFile Location="EditAdvertisementWebPart\EditAdvertisementWebPart.webpart" />
+    <ElementManifest Location="FullAdvertisementWebPart\Elements.xml" />
+    <ElementFile Location="FullAdvertisementWebPart\FullAdvertisementWebPart.webpart" />
+  </ElementManifests>
+</Feature>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="2242dc05-9f82-4ae6-bfaf-84e9fa374d0c" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="AdvertisementList.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="AdvertisementList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7d7f6a3184af7163" Namespace="AdvertisementList.AdvertisementListWebPart" TypeName="*" SafeAgainstScript="True" />
+        <SafeControl Assembly="AdvertisementList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7d7f6a3184af7163" Namespace="AdvertisementList.EditAdvertisementWebPart" TypeName="*" />
+        <SafeControl Assembly="AdvertisementList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7d7f6a3184af7163" Namespace="AdvertisementList.FullAdvertisementWebPart" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-theme.css.map" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap.css.map" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\fancybox.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\fotorama.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\main.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\media.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\owl.carousel.min.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\css\owl.theme.default.min.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\1.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\10.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\2.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\3.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\4.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\5.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\6.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\7.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\8.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\9.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow-down-3.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow-slider-left.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow-slider-right.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow-up.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow_down.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\arrow_down_black.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\camera.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\face.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\face2.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\blank.gif" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancybox-x.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancybox-y.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancybox.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_close.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_loading.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_nav_left.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_nav_right.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_e.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_n.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_ne.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_nw.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_s.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_se.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_sw.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_shadow_w.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_title_left.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_title_main.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_title_over.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\fancybox\fancy_title_right.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\file.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\like-border.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\like.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\log.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\logo.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\new1.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\news.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\picture-1.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\picture-2.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\rn-bank-our-life.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\searsh.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-1.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-2.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-3.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-4.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-5.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\slider-6.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\top-bg1.png" />
+    <TemplateFile Location="Layouts\AdvertisementList\img\x.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\common.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\editAdvertisement.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\fotorama.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\fullAdvertisement.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\jcf.checkbox.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\jcf.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\jcf.radio.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\jquery.fancybox.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\owl.carousel.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\js\script.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-grid.min.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-theme.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-theme.min.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap.min.css" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\js\bootstrap.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\js\bootstrap.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\js\npm.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\html5shiv\es5-shim.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\html5shiv\html5shiv-printshiv.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\html5shiv\html5shiv.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\jquery\jquery-1.11.2.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\modernizr\modernizr.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\plugins-scroll\plugins-scroll.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\libs\respond\respond.min.js" />
+    <TemplateFile Location="Layouts\AdvertisementList\utils\helper.js" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="AdvertisementList_AdvertisementListFeature.Site\Feature.xml" />
+  </FeatureManifests>
+</Solution>

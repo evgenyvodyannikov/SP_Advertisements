@@ -2,7 +2,7 @@
 <webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="AdvertisementsList.AdsListWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="AdvertisementsList.AdsListWebPart.AdsListWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>

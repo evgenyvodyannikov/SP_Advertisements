@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="AdvertisementList.FullAdvertisementWebPart.FullAdvertisementWebPart, AdvertisementList, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7d7f6a3184af7163" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Full Advertisement WebPart</property>
+        <property name="Description" type="string">Моя визуальная веб-часть</property>
+        <property name="ChromeType" type="chrometype">None</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

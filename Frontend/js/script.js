@@ -79,10 +79,11 @@ const displayAdvertisements = (page) => {
     let lookingFields = '$Select=Id,Category/Id,Status&$expand=Category';
     let filter = getFilterRequestUrl();
 
-    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${lookingFields}&${filter}`;
+    //const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items?${lookingFields}&${filter}&$inlinecount=allpages`;
+    const requestItemCountURL = `${webServerUrl}/_vti_bin/listdata.svc/Advertisements?$select=*&$inlinecount=allpages`;
     console.log('selectedCategoryId' + selectedCategoryId)
     console.log(requestItemCountURL)
-
+    debugger
     $.ajax({
         url: requestItemCountURL,
         type: "GET",
@@ -91,9 +92,10 @@ const displayAdvertisements = (page) => {
         },
         async: false,
         success: function (data) {
+            
             pageCount = Math.ceil(data.d.results.length / pageSize);  
-            lastItemId = data.d.results[0].Id;     
-            console.log(data.d.results);
+            lastItemId = data.d.results[0]?.Id;     
+            console.dir(data);
             console.log('new page count = ' + pageCount)   
         },  
         error: function (err) {
