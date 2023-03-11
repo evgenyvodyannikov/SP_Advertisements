@@ -34,3 +34,19 @@ const getUserInfo = (userID) => {
 const getUserLink = (userID) => {
     return `${_spPageContextInfo.webAbsoluteUrl}/_layouts/15/userdisp.aspx?ID=${userID}`
 }
+
+const getLocalDate = (date, year = false) => {
+
+    let localDate = new Date(date);
+    let dateOptions;
+
+    if(year){
+        dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    }
+    else{
+        dateOptions = { day: 'numeric', month: 'long'};
+    }
+
+    return localDate.toLocaleDateString("en-ES", dateOptions);
+
+}
