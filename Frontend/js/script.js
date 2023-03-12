@@ -7,7 +7,12 @@ if(!currentPage){
 /// Variables and conditions
 var pageCount = 0;
 var pageSize = 5;
-var lastItemId = 1;
+var currentUserId = _spPageContextInfo.userId;
+var isCurrentUserAdmin = isGroupMember(_spPageContextInfo.webAbsoluteUrl, currentUserId, "Avito Owners");
+
+if(isCurrentUserAdmin){
+    $('.choices-inp').removeClass('inactive');
+}
 
 var selectedCategoryId = 0;
 var isLookingActiveAds = true;
@@ -69,6 +74,10 @@ const getFilterRequestUrl = (filter = '') => {
     
     if(selectedCategoryId != 0) {
         filter += ` and Category/Id eq ${selectedCategoryId}`;
+    }
+
+    if(isLookingUserAds) {
+        filter += ` and AuthorId eq ${currentUserId}`;
     }
 
     return filter;
@@ -297,13 +306,25 @@ const selectStatus = (status, target) => {
 
 }
 
+const selectUserAds = () => {
+    
+    if ($('#c1').is(":checked")){
+        isLookingUserAds = true;
+    }
+    else{
+        isLookingUserAds = false;
+    }
+
+    updateCurrentPage(1)
+    displayAdvertisements(currentPage);
+    
+}
+
 $(document).ready( function() {
 
     displayCategories();
     displayAdvertisements(currentPage);
     
-
-
  });
 
 

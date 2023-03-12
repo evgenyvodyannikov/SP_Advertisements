@@ -80,53 +80,53 @@ namespace AdvertisementList.AdvertisementListWebPart {
                     "ss=\"pagin\">\r\n\t\t\t\t\t<li><a href=\"\">Главная</a></li>\r\n\t\t\t\t\t<li><a href=\"\">Кредитный" +
                     " департамент</a></li>\r\n\t\t\t\t\t<li><a hre\tf=\"\">Отдел прогназирования спроса</a></li" +
                     ">\r\n\t\t\t\t</ul>\r\n\t\t\t\t<div class=\"title\">Доска объявлений</div>\r\n                   " +
-                    " <div class=\"first-row\">\r\n                        <div class=\"choices-inp\">\r\n\t\t\t" +
-                    "\t\t\t    <p class=\"label\">Объявления</p>\r\n\t\t\t\t\t\t    <div class=\"choices\">\r\n\t\t\t\t\t\t\t" +
-                    "    <a href=\"#active\" class=\"choice active\" onclick=\"selectStatus(\'Active\', this" +
-                    ")\">Активные</a>\r\n\t\t\t\t\t\t\t    <a href=\"#moderation\" class=\"choice\" onclick=\"select" +
-                    "Status(\'Moderation\', this)\">На модерации</a>\r\n\t\t\t\t\t\t    </div>\r\n\t\t\t\t\t    </div>\r" +
-                    "\n\t\t\t\t\t    <div class=\"inp\">\r\n\t\t\t\t\t\t    <p class=\"label\">Категории</p>\r\n\t\t\t\t\t\t   " +
-                    " <select class=\"form-control\" id=\"Categories\">\r\n\t\t\t\t\t\t\t    <option value=\"\">Any<" +
-                    "/option>\r\n                                <option disabled value=\"\">Pending...</" +
-                    "option>\r\n\t\t\t\t\t\t    </select>\r\n\t\t\t\t\t    </div>\r\n\t\t\t\t\t    <input class=\"btn\" type=" +
-                    "\"submit\" value=\"+ Create Advertisement\">\r\n\t\t\t\t    </div>\r\n                    <d" +
-                    "iv class=\"second-row\">\r\n                         <div class=\"ch\">\r\n\t\t\t\t\t\t    <in" +
-                    "put type=\"checkbox\" id=\"c1\">\r\n\t\t\t\t\t\t    <label for=\"c1\">Мои объявления</label>\r\n" +
-                    "\t\t\t\t\t    </div>\r\n                    </div>\r\n                </div>\r\n\t\t\t</div>\r\n" +
-                    "\t\t</div>\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"two-columns\">\r\n\t\t\t\t<div clas" +
-                    "s=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-9 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"content-box\">" +
-                    "\r\n\t\t\t\t\t\t\t<div class=\"news-box section-padding\">\r\n\t\t\t\t\t\t\t\t<div class=\"news-item p" +
-                    "ending\">Pending...</div>\r\n\t\t\t\t\t\t\t\t<div class=\"pager\">\r\n\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t<" +
-                    "/ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div clas" +
-                    "s=\"col-md-3 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"aside aside-moved-top\">\r\n\t\t\t\t\t\t\t<div " +
-                    "class=\"aside-box fast-links\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">Быстрые сс" +
-                    "ылки</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Анонсы</a></li>\r\n" +
-                    "\t\t\t\t\t\t\t\t\t<li><a href=\"\">Оргструктура</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Онлайн би" +
-                    "блиотека</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Объявления</a></li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t" +
-                    "\t\t\t\t\t\t\t<a href=\"\" class=\"like\">Скажи спасибо</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div cla" +
-                    "ss=\"aside-box birthday-box\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">Ближайшие д" +
-                    "ни рождения</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div clas" +
-                    "s=\"img\"><a href=\"\"><img src=\"../_layouts/15/AdvertisementList/img/face.png\" alt=" +
-                    "\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"date\">26 марта" +
-                    "</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=\"\">Анна Ефремова</a></div>\r\n\t\t\t\t\t\t\t" +
-                    "\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t" +
-                    "<li>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"img\"><a href=\"\"><img src=\"../_layouts/15/Advertiseme" +
-                    "ntList/img//face.png\" alt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t\t\t" +
-                    "<div class=\"date\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=\"\">Анна Е" +
-                    "фремова</a></div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r" +
-                    "\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"more-link\">Показать бо" +
-                    "льше</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</d" +
-                    "iv>\r\n\t</div>\r\n\t<div class=\"footer footer-inner\">\r\n\t\t<div class=\"container\">\r\n\t\t\t" +
-                    "<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm-12\">\r\n\t\t\t\t\t<div class=\"wrap\">\r\n\t\t\t\t\t\t<" +
-                    "div class=\"copy\">© 2018 РН Банк. Корпоративный портал сотрудников банка.</div>\r\n" +
-                    "\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!--[if lt I" +
-                    "E 9]>\r\n\t<script src=\"libs/html5shiv/es5-shim.min.js\"></script>\r\n\t<script src=\"li" +
-                    "bs/html5shiv/html5shiv.min.js\"></script>\r\n\t<script src=\"libs/html5shiv/html5shiv" +
-                    "-printshiv.min.js\"></script>\r\n\t<script src=\"libs/respond/respond.min.js\"></scrip" +
-                    "t>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_layouts/15/AdvertisementList/libs/jquery/" +
-                    "jquery-1.11.2.min.js\"></script>\r\n    <script src=\"../_layouts/15/AdvertisementLi" +
-                    "st/utils/helper.js\"></script>\r\n    <script src=\"../_layouts/15/AdvertisementList" +
-                    "/js/script.js?ver=");
+                    " <div class=\"first-row\">\r\n                        <div class=\"choices-inp inacti" +
+                    "ve\">\r\n\t\t\t\t\t\t    <p class=\"label\">Объявления</p>\r\n\t\t\t\t\t\t    <div class=\"choices\">" +
+                    "\r\n\t\t\t\t\t\t\t    <a href=\"#active\" class=\"choice active\" onclick=\"selectStatus(\'Acti" +
+                    "ve\', this)\">Активные</a>\r\n\t\t\t\t\t\t\t    <a href=\"#moderation\" class=\"choice\" onclic" +
+                    "k=\"selectStatus(\'Moderation\', this)\">На модерации</a>\r\n\t\t\t\t\t\t    </div>\r\n\t\t\t\t\t  " +
+                    "  </div>\r\n\t\t\t\t\t    <div class=\"inp\">\r\n\t\t\t\t\t\t    <p class=\"label\">Категории</p>\r\n" +
+                    "\t\t\t\t\t\t    <select class=\"form-control\" id=\"Categories\">\r\n\t\t\t\t\t\t\t    <option valu" +
+                    "e=\"\">Any</option>\r\n                                <option disabled value=\"\">Pen" +
+                    "ding...</option>\r\n\t\t\t\t\t\t    </select>\r\n\t\t\t\t\t    </div>\r\n\t\t\t\t\t    <input class=\"b" +
+                    "tn\" type=\"submit\" value=\"+ Create Advertisement\">\r\n\t\t\t\t    </div>\r\n             " +
+                    "       <div class=\"second-row\">\r\n                         <div class=\"ch\">\r\n\t\t\t\t" +
+                    "\t\t    <input type=\"checkbox\" id=\"c1\" onchange=\"selectUserAds()\">\r\n\t\t\t\t\t\t    <lab" +
+                    "el for=\"c1\">Мои объявления</label>\r\n\t\t\t\t\t    </div>\r\n                    </div>\r" +
+                    "\n                </div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"container\">\r\n\t\t\t<div" +
+                    " class=\"two-columns\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col-md-9 col-sm-1" +
+                    "2\">\r\n\t\t\t\t\t\t<div class=\"content-box\">\r\n\t\t\t\t\t\t\t<div class=\"news-box section-paddin" +
+                    "g\">\r\n\t\t\t\t\t\t\t\t<div class=\"news-item pending\">Pending...</div>\r\n\t\t\t\t\t\t\t\t<div class" +
+                    "=\"pager\">\r\n\t\t\t\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t" +
+                    "\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col-md-3 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"a" +
+                    "side aside-moved-top\">\r\n\t\t\t\t\t\t\t<div class=\"aside-box fast-links\">\r\n\t\t\t\t\t\t\t\t<div " +
+                    "class=\"aside-title title\">Быстрые ссылки</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t" +
+                    "\t\t\t\t<li><a href=\"\">Анонсы</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Оргструктура</a></li" +
+                    ">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Онлайн библиотека</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">О" +
+                    "бъявления</a></li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"like\">Скажи спасибо" +
+                    "</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"aside-box birthday-box\">\r\n\t\t\t\t\t\t\t\t<div c" +
+                    "lass=\"aside-title title\">Ближайшие дни рождения</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">" +
+                    "\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"img\"><a href=\"\"><img src=\"../_layouts/15/" +
+                    "AdvertisementList/img/face.png\" alt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t" +
+                    "\t\t\t\t\t\t\t\t\t\t<div class=\"date\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href" +
+                    "=\"\">Анна Ефремова</a></div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t" +
+                    "\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"img\"><a href=\"\">" +
+                    "<img src=\"../_layouts/15/AdvertisementList/img//face.png\" alt=\"\"></a></div>\r\n\t\t\t" +
+                    "\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"date\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t" +
+                    "\t<div class=\"name\"><a href=\"\">Анна Ефремова</a></div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fa" +
+                    "h\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a h" +
+                    "ref=\"\" class=\"more-link\">Показать больше</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t" +
+                    "</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"footer footer-inn" +
+                    "er\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm-12" +
+                    "\">\r\n\t\t\t\t\t<div class=\"wrap\">\r\n\t\t\t\t\t\t<div class=\"copy\">© 2018 РН Банк. Корпоративн" +
+                    "ый портал сотрудников банка.</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>" +
+                    "\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!--[if lt IE 9]>\r\n\t<script src=\"libs/html5shiv/es5-shim" +
+                    ".min.js\"></script>\r\n\t<script src=\"libs/html5shiv/html5shiv.min.js\"></script>\r\n\t<" +
+                    "script src=\"libs/html5shiv/html5shiv-printshiv.min.js\"></script>\r\n\t<script src=\"" +
+                    "libs/respond/respond.min.js\"></script>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_layou" +
+                    "ts/15/AdvertisementList/libs/jquery/jquery-1.11.2.min.js\"></script>\r\n    <script" +
+                    " src=\"../_layouts/15/AdvertisementList/utils/helper.js\"></script>\r\n    <script s" +
+                    "rc=\"../_layouts/15/AdvertisementList/js/script.js?ver=");
                                                            @__w.Write(DateTime.Now.Millisecond);
 
             @__w.Write(@"""></script>

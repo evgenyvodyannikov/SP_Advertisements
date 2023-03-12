@@ -50,3 +50,34 @@ const getLocalDate = (date, year = false) => {
     return localDate.toLocaleDateString("en-ES", dateOptions);
 
 }
+
+const isGroupMember = (webUrl, userId, groupName) => {
+
+    let isAdmin = false;
+    const requestUrl = `${webUrl}/_api/web/getuserbyid('${userId}')/groups`
+
+    $.ajax({      
+        url: requestUrl,      
+        type: "GET",      
+        headers: {      
+            "Accept": "application/json; odata=verbose"      
+        },   
+        async: false,       
+        success: function(data) {
+
+            $.each(data.d.results, function (index, item) {
+                if(item.Title == groupName){
+                    isAdmin = true;
+                    return;
+                }
+            });
+
+        },      
+        error: function(err) {      
+            console.log("There was an error" + err);     
+        }      
+    });
+
+    return isAdmin;
+
+};

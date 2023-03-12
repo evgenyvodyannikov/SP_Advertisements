@@ -37,7 +37,7 @@
 				</ul>
 				<div class="title">Доска объявлений</div>
                     <div class="first-row">
-                        <div class="choices-inp">
+                        <div class="choices-inp inactive">
 						    <p class="label">Объявления</p>
 						    <div class="choices">
 							    <a href="#active" class="choice active" onclick="selectStatus('Active', this)">Активные</a>
@@ -55,7 +55,7 @@
 				    </div>
                     <div class="second-row">
                          <div class="ch">
-						    <input type="checkbox" id="c1">
+						    <input type="checkbox" id="c1" onchange="selectUserAds()">
 						    <label for="c1">Мои объявления</label>
 					    </div>
                     </div>
