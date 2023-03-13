@@ -99,7 +99,7 @@ const deleteImage = (index) => {
 
 const deleteMarkedAttachments = () => {
 
-    let deletedAttachments = attachments.filter(item => item.MarkToDelete && item.IsAttachment)
+    let deletedAttachments = attachments.filter(item => item.MarkToDelete)
 
     $.each(deletedAttachments, function (index, item) {
 

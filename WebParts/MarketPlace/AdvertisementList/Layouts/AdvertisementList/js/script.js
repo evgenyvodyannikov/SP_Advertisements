@@ -5,6 +5,7 @@ if(!currentPage){
 }
 
 /// Variables and conditions
+var webAbsoluteUrl = _spPageContextInfo.webAbsoluteUrl;
 var pageCount = 0;
 var pageSize = 5;
 var currentUserId = _spPageContextInfo.userId;
@@ -206,8 +207,7 @@ const fillAdvertisements = (items) => {
         let category = getListProperty('Categories', item.CategoryId, 'Title');
         let userInfo = getUserInfo(item.AuthorId);
         let userLink = getUserLink(item.AuthorId);
-        let ImageUrl = item.Image.replaceAll(' ', '').split(',')[0];
-        let ImageDescription = item.Image.replaceAll(' ', '').split(',')[1];
+        let ImageUrl = getAttachmentUrls(webAbsoluteUrl, item.Id, true);
 
         let date = item.Created.replace(/\D/g, '');
         date = getLocalDate(date * 1, true);
@@ -217,7 +217,7 @@ const fillAdvertisements = (items) => {
             <div class="row">
                 <div class="col-sm-4 col-xs-12">
                     <div class="img">
-                    <a href><img src="${ImageUrl}" alt="${ImageDescription}"></a>
+                    <a href><img src="${ImageUrl}" alt="${ImageUrl}"></a>
                     </div>
                 </div>
 

@@ -93,3 +93,33 @@ const getQueryStringParameter = (param, query) => {
     }
     return null;
 }
+
+const getAttachmentUrls = (webAbsoluteUrl, id, FirstItem = false) => {
+
+    let attachmentsUrls = [];
+    const requestURL = `${webAbsoluteUrl}/_vti_bin/listdata.svc/Advertisements(${id})/Attachments`
+
+    $.ajax({
+        url: requestURL,
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose"
+        },
+        async: false,
+        success: function (data) {
+            $.each(data.d.results, function (index, item) {
+                attachmentsUrls.push(item.__metadata.media_src);
+            });
+        },
+        error: function (err) {
+            console.log("There was an error" + err);
+        }
+    });
+
+    if(FirstItem){
+        return attachmentsUrls[0];
+    }
+    else{
+        return attachmentsUrls;
+    }
+}
