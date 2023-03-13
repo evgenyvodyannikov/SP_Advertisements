@@ -66,7 +66,7 @@
 									</div>
 									<div class="row-inp">
 										<label for="file-upload" class="custom-file-upload">Select images (3 or less)</label>
-                                        <input id="file-upload" type="file"/>
+                                        <input id="file-upload" type="file" multiple onchange="selectFiles()"/>
 									</div>
 									<div class="row-inp">
 										<ul class="download-images">

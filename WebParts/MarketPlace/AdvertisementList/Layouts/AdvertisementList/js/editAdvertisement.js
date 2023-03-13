@@ -186,11 +186,14 @@ const getAttachmentUrls = () => {
     return attachmentsUrls;
 }
 
-const createImagesLayout = (imageObjectArray) => {
+const updateImagesLayout = () => {
 
     let imageContainer = $('ul.download-images');
+    imageContainer.html('');
 
-    $.each(imageObjectArray, function (index, item) {
+    let activeAttachments = attachments.filter(item => !item.MarkToDelete);
+
+    $.each(activeAttachments, function (index, item) {
         imageContainer.append(`
         <li id="${index}">
             <img src="${item.Url}" alt="">
@@ -239,7 +242,7 @@ const fillAdvertisementData = (data) => {
         attachments = [mainImage];
     }
 
-    createImagesLayout(attachments);
+    updateImagesLayout(attachments);
     console.log(attachments);
 
 }
@@ -348,3 +351,37 @@ $(document).ready(function () {
     }
 
 });
+
+const selectFiles = () => {
+
+    let files = $('#file-upload')[0].files;
+
+    $.each(files, function (index, file) {
+        if (attachments.filter(item => !item.MarkToDelete).length < 3) {
+
+            let imageType = /^image\//;
+
+            if (imageType.test(file.type)) {
+
+                attachments.push({
+                    Url: URL.createObjectURL(file),
+                    IsAttachment: true,
+                    FileName: file.name,
+                    MarkToDelete: false,
+                    isNew: true,
+                    data: file
+                });
+
+            }
+        }
+        else {
+            alert('You have already added 3 images!');
+        }
+
+    });
+
+    console.log(attachments);
+    updateImagesLayout(attachments);
+
+}
+

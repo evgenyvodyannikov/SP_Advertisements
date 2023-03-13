@@ -97,7 +97,7 @@ const deleteImage = (index) => {
 }
 
 
-const deleteAttachments = () => {
+const deleteMarkedAttachments = () => {
 
     let deletedAttachments = attachments.filter(item => item.MarkToDelete && item.IsAttachment)
 
@@ -127,7 +127,7 @@ const deleteAttachments = () => {
 }
 
 
-const createAttachments = () => {
+const createNewAttachments = () => {
 
     let newAttachments = attachments.filter(item => item.isNew);
 
@@ -141,19 +141,43 @@ const createAttachments = () => {
 
     let mainImage = newAttachments.shift();
 
+    var apiUrl = "/_api/web/lists/getbytitle('<list title>')/items(<item id>)/AttachmentFiles/add(FileName='" + fileName + "')";
+var file = files[i];
+var reader = new FileReader();
+reader.onload = function (e) {
+    var fileData = e.target.result;
+    $.ajax({
+        url: apiUrl,
+        method: "POST",
+        data: fileData,
+        processData: false,
+        headers: {
+            "accept": "application/json;odata=verbose",
+            "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+            "content-length": file.size,
+        },
+        success: function (data) {
+            console.log("File uploaded successfully");
+        },
+        error: function (error) {
+            console.log("Error uploading file: " + error);
+        }
+    });
+};
+reader.readAsArrayBuffer(file);
 
 
 }
 
 const saveImages = () => {
 
-    deleteAttachments();
+    deleteMarkedAttachments();
 
-    createAttachments();
+    createNewAttachments();
 
 }
 
-const getAttachmentUrls = () => {
+const getAttachments = () => {
 
     let attachmentsUrls = [];
     const requestURL = `${webAbsoluteUrl}/_vti_bin/listdata.svc/Advertisements(${id})/Attachments`
@@ -170,7 +194,6 @@ const getAttachmentUrls = () => {
             $.each(data.d.results, function (index, item) {
                 attachmentsUrls.push({
                     Url: item.__metadata.media_src,
-                    IsAttachment: true,
                     FileName: item.Name,
                     MarkToDelete: false,
                     isNew: false
@@ -186,11 +209,14 @@ const getAttachmentUrls = () => {
     return attachmentsUrls;
 }
 
-const createImagesLayout = (imageObjectArray) => {
+const updateImagesLayout = () => {
 
     let imageContainer = $('ul.download-images');
+    imageContainer.html('');
 
-    $.each(imageObjectArray, function (index, item) {
+    let activeAttachments = attachments.filter(item => !item.MarkToDelete);
+
+    $.each(activeAttachments, function (index, item) {
         imageContainer.append(`
         <li id="${index}">
             <img src="${item.Url}" alt="">
@@ -222,24 +248,25 @@ const fillAdvertisementData = (data) => {
         changeBtn.html('Publish');
     }
 
-    let mainImageUrl = data.Image.replaceAll(' ', '').split(',')[0];
+    // let mainImageUrl = data.Image.replaceAll(' ', '').split(',')[0];
 
-    let mainImage = {
-        Url: mainImageUrl,
-        IsAttachment: false,
-        FileName: mainImageUrl,
-        MarkToDelete: false,
-        isNew: false
-    };
+    // let mainImage = {
+    //     Url: mainImageUrl,
+    //     IsAttachment: false,
+    //     FileName: mainImageUrl,
+    //     MarkToDelete: false,
+    //     isNew: false
+    // };
 
     if (data.Attachments) {
-        attachments = [mainImage, ...getAttachmentUrls()];
+        //attachments = [mainImage, ...getAttachmentUrls()];
+        attachments = getAttachments();
     }
     else {
-        attachments = [mainImage];
+        attachments = [];
     }
 
-    createImagesLayout(attachments);
+    updateImagesLayout(attachments);
     console.log(attachments);
 
 }
@@ -249,7 +276,7 @@ const fillAdvertisementData = (data) => {
 const displayAdvertisementInfo = () => {
 
     let filter = `$filter = Id eq ${id}`;
-    let fields = '$select = Title, Description, AuthorId, Created, Image, Attachments, Status/Value, CategoryId&$expand=Status'
+    let fields = '$select = Id, Title, Description, AuthorId, Created, Image, Attachments, Status/Value, CategoryId&$expand=Status'
 
     const advertisementsAPIEndpoind = getAPIEndpoint('Advertisements');
     const requestUrl = `${advertisementsAPIEndpoind}?${filter}&${fields}`;
@@ -333,6 +360,38 @@ const deleteAdvertisement = () => {
     }
 }
 
+const selectFiles = () => {
+   
+    let files = $('#file-upload')[0].files;
+
+    $.each(files, function (index, file) {
+        if(attachments.filter(item => !item.MarkToDelete).length < 3){
+
+            let imageType = /^image\//;
+            
+            if (imageType.test(file.type)) {
+
+                attachments.push({
+                    Url: URL.createObjectURL(file),
+                    IsAttachment: true,
+                    FileName: file.name,
+                    MarkToDelete: false,
+                    isNew: true,
+                    data: file
+                });
+
+            }
+        }
+        else{
+            alert('You have already added 3 images!');
+        }
+        
+    });
+
+    console.log(attachments);
+    updateImagesLayout(attachments);
+
+}
 
 $(document).ready(function () {
 
@@ -348,3 +407,6 @@ $(document).ready(function () {
     }
 
 });
+
+
+

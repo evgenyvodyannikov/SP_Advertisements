@@ -80,32 +80,33 @@ namespace AdvertisementList.EditAdvertisementWebPart {
                         ">\r\n\t\t\t\t\t\t\t\t\t\t<textarea class=\"edit-description\"></textarea>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t" +
                         "\t\t\t\t\t\t\t<div class=\"row-inp\">\r\n\t\t\t\t\t\t\t\t\t\t<label for=\"file-upload\" class=\"custom-f" +
                         "ile-upload\">Select images (3 or less)</label>\r\n                                 " +
-                        "       <input id=\"file-upload\" type=\"file\"/>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div cla" +
-                        "ss=\"row-inp\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"download-images\">\r\n\t\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t" +
-                        "\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"row-inp\">\r\n\t\t\t\t\t\t\t\t\t\t<p class=\"label\">Объявление б" +
-                        "удет отправлено на модерацию</p>\r\n\t\t\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"btn\" val" +
-                        "ue=\"Сохранить\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t</div>" +
-                        "\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col-md-3 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"aside as" +
-                        "ide-moved-top\">\r\n\t\t\t\t\t\t\t<div class=\"aside-box news-archive\">\r\n\t\t\t\t\t\t\t\t<div class" +
-                        "=\"aside-title title\" id=\"status\">Pending</div>\r\n\t\t\t\t\t\t\t\t<a href=\"#change\" class=" +
-                        "\"btn publish\" id=\"changeStatus\" onclick=\"publishAdvertisement()\">Опубликовать</a" +
-                        ">\r\n\t\t\t\t\t\t\t\t<ul class=\"month-list\">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">В архив</a></li>\r\n\t\t" +
-                        "\t\t\t\t\t\t\t<li><a href=\"#delete\" onclick=\"deleteAdvertisement()\">Удалить</a></li  \r\n" +
-                        "\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n" +
-                        "\t\t</div>\r\n\t</div>\r\n\t<div class=\"footer footer-inner\">\r\n\t\t<div class=\"container\">" +
-                        "\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm-12\">\r\n\t\t\t\t\t<div class=\"wrap\">\r\n\t\t" +
-                        "\t\t\t\t<div class=\"copy\">© 2018 РН Банк. Корпоративный портал сотрудников банка.</d" +
-                        "iv>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!--[if" +
-                        " lt IE 9]>\r\n\t<script src=\"libs/html5shiv/es5-shim.min.js\"></script>\r\n\t<script sr" +
-                        "c=\"libs/html5shiv/html5shiv.min.js\"></script>\r\n\t<script src=\"libs/html5shiv/html" +
-                        "5shiv-printshiv.min.js\"></script>\r\n\t<script src=\"libs/respond/respond.min.js\"></" +
-                        "script>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_layouts/15/AdvertisementList/libs/jq" +
-                        "uery/jquery-1.11.2.min.js\"></script>\r\n    <script src=\"../_layouts/15/Advertisem" +
-                        "entList/utils/helper.js\"></script>\r\n    <script src=\"../_layouts/15/Advertisemen" +
-                        "tList/js/editAdvertisement.js\"></script>\r\n\t<script src=\"../_layouts/15/Advertise" +
-                        "mentList/libs/plugins-scroll/plugins-scroll.js\"></script>\r\n\t<script src=\"../_lay" +
-                        "outs/15/AdvertisementList/js/owl.carousel.js\"></script>\r\n\t<script src=\"../_layou" +
-                        "ts/15/AdvertisementList/js/common.js\"></script>\r\n\t\r\n</body>\r\n</html>"));
+                        "       <input id=\"file-upload\" type=\"file\" multiple onchange=\"selectFiles()\"/>\r\n" +
+                        "\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"row-inp\">\r\n\t\t\t\t\t\t\t\t\t\t<ul class=\"download-i" +
+                        "mages\">\r\n\t\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"row-inp\">\r\n\t\t\t\t\t" +
+                        "\t\t\t\t\t<p class=\"label\">Объявление будет отправлено на модерацию</p>\r\n\t\t\t\t\t\t\t\t\t\t<i" +
+                        "nput type=\"submit\" class=\"btn\" value=\"Сохранить\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</fo" +
+                        "rm>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col-md-3 col-s" +
+                        "m-12\">\r\n\t\t\t\t\t\t<div class=\"aside aside-moved-top\">\r\n\t\t\t\t\t\t\t<div class=\"aside-box " +
+                        "news-archive\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\" id=\"status\">Pending</div>" +
+                        "\r\n\t\t\t\t\t\t\t\t<a href=\"#change\" class=\"btn publish\" id=\"changeStatus\" onclick=\"publi" +
+                        "shAdvertisement()\">Опубликовать</a>\r\n\t\t\t\t\t\t\t\t<ul class=\"month-list\">\r\n\t\t\t\t\t\t\t\t\t<" +
+                        "li><a href=\"\">В архив</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"#delete\" onclick=\"deleteAd" +
+                        "vertisement()\">Удалить</a></li  \r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t" +
+                        "\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"footer footer-" +
+                        "inner\">\r\n\t\t<div class=\"container\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm" +
+                        "-12\">\r\n\t\t\t\t\t<div class=\"wrap\">\r\n\t\t\t\t\t\t<div class=\"copy\">© 2018 РН Банк. Корпорат" +
+                        "ивный портал сотрудников банка.</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</d" +
+                        "iv>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!--[if lt IE 9]>\r\n\t<script src=\"libs/html5shiv/es5-s" +
+                        "him.min.js\"></script>\r\n\t<script src=\"libs/html5shiv/html5shiv.min.js\"></script>\r" +
+                        "\n\t<script src=\"libs/html5shiv/html5shiv-printshiv.min.js\"></script>\r\n\t<script sr" +
+                        "c=\"libs/respond/respond.min.js\"></script>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_la" +
+                        "youts/15/AdvertisementList/libs/jquery/jquery-1.11.2.min.js\"></script>\r\n    <scr" +
+                        "ipt src=\"../_layouts/15/AdvertisementList/utils/helper.js\"></script>\r\n    <scrip" +
+                        "t src=\"../_layouts/15/AdvertisementList/js/editAdvertisement.js\"></script>\r\n\t<sc" +
+                        "ript src=\"../_layouts/15/AdvertisementList/libs/plugins-scroll/plugins-scroll.js" +
+                        "\"></script>\r\n\t<script src=\"../_layouts/15/AdvertisementList/js/owl.carousel.js\">" +
+                        "</script>\r\n\t<script src=\"../_layouts/15/AdvertisementList/js/common.js\"></script" +
+                        ">\r\n\t\r\n</body>\r\n</html>"));
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +

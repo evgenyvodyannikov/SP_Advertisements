@@ -1,36 +1,10 @@
 var currentUserId = _spPageContextInfo.userId;
+const webAbsoluteUrl = _spPageContextInfo.webAbsoluteUrl;
 var isCurrentUserAdmin = isGroupMember(_spPageContextInfo.webAbsoluteUrl, currentUserId, "Avito Owners");
 
 let currentStatus = '';
 let listItemType = null;
 let isAuthor = false;
-
-const getAttachmentUrls = () => {
-
-    let attachmentsUrls = [];
-    const requestURL = `${webServerUrl}/_vti_bin/listdata.svc/Advertisements(${id})/Attachments`
-
-    $.ajax({
-        url: requestURL,
-        type: "GET",
-        headers: {
-            "accept": "application/json;odata=verbose"
-        },
-        async: false,
-        success: function (data) {
-            console.log(data.d);
-            $.each(data.d.results, function (index, item) {
-                attachmentsUrls.push(item.__metadata.media_src);
-            });
-            console.log(attachmentsUrls);
-        },
-        error: function (err) {
-            console.log("There was an error" + err);
-        }
-    });
-
-    return attachmentsUrls;
-}
 
 const GetAttachmentsHTML = (attachmentsUrls) => {
     let html = '';
@@ -88,11 +62,12 @@ const fillAdvertisementData = (data) => {
     authorName.html(userInfo.Name);
     authorLink[0].href = userLink;
 
-    let ImageUrl = data.Image.replaceAll(' ', '').split(',')[0];
+    //let ImageUrl = data.Image.replaceAll(' ', '').split(',')[0];
 
     if (data.Attachments) {
-        let attachmentsUrls = getAttachmentUrls();
-        let imageSet = [ImageUrl, ...attachmentsUrls];
+        imageSet = getAttachmentUrls(webAbsoluteUrl, data.Id);
+        console.log(data)
+        //let imageSet = [ImageUrl, ...attachmentsUrls];
         attachments.html(GetAttachmentsHTML(imageSet))
     }
     else {
@@ -110,7 +85,7 @@ const fillAdvertisementData = (data) => {
     else {
         changeBtn.html('Publish');
     }
-    $('a#edit').attr("href", `${webServerUrl}/editAdvertisement?$id=${id}`);
+    $('a#edit').attr("href", `${webAbsoluteUrl}/editAdvertisement?$id=${id}`);
     currentStatus = data.Status;
 
 }
@@ -132,7 +107,7 @@ const deleteAdvertisement = () => {
             },
             success: function (data) {
                 alert("Item delete successfully");
-                window.location.href = `${webServerUrl}`
+                window.location.href = `${webAbsoluteUrl}`
             },
             error: function (error) {
                 console.error("Error updating item: " + JSON.stringify(error));
@@ -172,14 +147,13 @@ const publishAdvertisement = () => {
 }
 
 let id = getQueryStringParameter("$id", window.location.search.substring(1)) || 1;
-const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
-const APIEndpoint = `${webServerUrl}/_api/web/lists/getbytitle('Advertisements')/Items(${id})`;
+const APIEndpoint = `${webAbsoluteUrl}/_api/web/lists/getbytitle('Advertisements')/Items(${id})`;
 
 if (id !== null) {
 
     let filter = `$filter = Id eq ${id}`;
-    let fields = '$select = Title, Description, AuthorId, Created, Image, Attachments, Status/Value, Category/Title&$expand=Category, Status'
-    const requestUrl = `${webServerUrl}/_vti_bin/listdata.svc/Advertisements?${filter}&${fields}`;
+    let fields = '$select = Id, Title, Description, AuthorId, Created, Image, Attachments, Status/Value, Category/Title&$expand=Category, Status'
+    const requestUrl = `${webAbsoluteUrl}/_vti_bin/listdata.svc/Advertisements?${filter}&${fields}`;
     console.log(requestUrl)
 
     $.ajax({
