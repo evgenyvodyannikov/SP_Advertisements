@@ -1,3 +1,16 @@
+var currentUserId = _spPageContextInfo.userId;
+var isCurrentUserAdmin = isGroupMember(_spPageContextInfo.webAbsoluteUrl, currentUserId, "Avito Owners");
+
+if (isCurrentUserAdmin) {
+    $('#admin-panel').removeClass('inactive');
+    $('.aside-box.birthday-box').remove();
+}
+else {
+    $('#admin-panel').remove();
+}
+
+let currentStatus = '';
+let listItemType = null;
 
 const getQueryStringParameter = (param) => {
     let query = window.location.search.substring(1);
@@ -5,10 +18,37 @@ const getQueryStringParameter = (param) => {
     for (let i = 0; i < vars.length; i++) {
         let pair = vars[i].split('=');
         if (decodeURIComponent(pair[0]) === param) {
-            return decodeURIComponent(pair[1]); 
+            return decodeURIComponent(pair[1]);
         }
     }
     return null;
+}
+
+const getAttachmentUrls = () => {
+
+    let attachmentsUrls = [];
+    const requestURL = `${webServerUrl}/_vti_bin/listdata.svc/Advertisements(${id})/Attachments`
+
+    $.ajax({
+        url: requestURL,
+        type: "GET",
+        headers: {
+            "accept": "application/json;odata=verbose"
+        },
+        async: false,
+        success: function (data) {
+            console.log(data.d);
+            $.each(data.d.results, function (index, item) {
+                attachmentsUrls.push(item.__metadata.media_src);
+            });
+            console.log(attachmentsUrls);
+        },
+        error: function (err) {
+            console.log("There was an error" + err);
+        }
+    });
+
+    return attachmentsUrls;
 }
 
 const GetAttachmentsHTML = (attachmentsUrls) => {
@@ -36,11 +76,13 @@ const fillAdvertisementData = (data) => {
     let authorName = $('div.hh > div.who > a > div.name');
     let attachments = $('div.row.desk-photos')
     let linkToUser = $('a.link')
-    
+    let status = $('.aside-title.title#status');
+    let changeBtn = $('#changeStatus');
+
     let userLink = getUserLink(data.AuthorId);
     let userInfo = getUserInfo(data.AuthorId);
     let dateCreated = new Date(data.Created);
-    let dateOptions = { day: 'numeric', month: 'long'}
+    let dateOptions = { day: 'numeric', month: 'long' }
 
     title.html(data.Title);
     text.html(data.AdvDescription || '');
@@ -51,39 +93,113 @@ const fillAdvertisementData = (data) => {
     authorName.html(userInfo.Name);
     authorLink[0].href = userLink;
 
-    attachments.html(GetAttachmentsHTML([data.Image.Url]))
+    if (data.Attachments) {
+        let attachmentsUrls = getAttachmentUrls();
+        let imageSet = [data.Image.Url, ...attachmentsUrls];
+        attachments.html(GetAttachmentsHTML(imageSet))
+    }
+    else {
+        attachments.html(GetAttachmentsHTML([data.Image.Url]))
+    }
 
     linkToUser.html(`Contact ${userInfo.Name}`)
     linkToUser[0].href = userLink;
 
+    // Admin-panel 
+    status.html(`Status is ${data.Status}`);
+    if (data.Status == 'Active') {
+        changeBtn.html('To moderation');
+    }
+    else {
+        changeBtn.html('Publish');
+    }
+    $('a#edit').attr("href", `${webServerUrl}/editAdvertisement?$id=${id}`);
+    currentStatus = data.Status;
+
+}
+
+const deleteAdvertisement = () => {
+
+    const requestUrl = APIEndpoint;
+
+    isAccepted = confirm('Are you sure?');
+    if(isAccepted){
+        $.ajax({
+            url: requestUrl,
+            method: "DELETE",
+            headers: {
+                "X-RequestDigest": $('#__REQUESTDIGEST').val(),
+                "X-HTTP-Method": "MERGE",
+                "If-Match": "*",
+                "Content-Type": "application/json;odata=verbose"
+            },
+            success: function (data) {
+                alert("Item delete successfully");
+                window.location.href = `${webServerUrl}`
+            },
+            error: function (error) {
+                console.error("Error updating item: " + JSON.stringify(error));
+            }
+        });
+    }
+}
+
+const publishAdvertisement = () => {
+
+    const requestUrl = APIEndpoint;
+
+    let patchStatus = currentStatus == 'Active' ? 'Moderation' : 'Active';
+    let itemPayload = {
+        "__metadata": { "type": listItemType },
+        "Status": patchStatus
+    };
+
+    $.ajax({
+        url: requestUrl,
+        type: "POST",
+        headers: {
+            "X-RequestDigest": $('#__REQUESTDIGEST').val(),
+            "X-HTTP-Method": "MERGE",
+            "If-Match": "*",
+            "Content-Type": "application/json;odata=verbose"
+        },
+        data: JSON.stringify(itemPayload),
+        success: function (data) {
+            console.log("Item updated successfully");
+            window.location.reload();
+        },
+        error: function (error) {
+            console.error("Error updating item: " + JSON.stringify(error));
+        }
+    });
 }
 
 let id = getQueryStringParameter("$id") || 1;
+const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
+const APIEndpoint = `${webServerUrl}/_api/web/lists/getbytitle('Advertisements')/Items(${id})`;
 
 if (id !== null) {
 
-    const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
-    const listName = 'Advertisements';
-    let filter = `?$filter=Id eq ${id}`
-    let fields = '&$select=*,Category/Title&$expand=Category'
-
-    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items${filter}${fields}`;
-    console.log(requestItemCountURL)
-    
+    let fields = '$select=Title, AdvDescription, AuthorId, Created, Image, Attachments, Status, Category/Title&$expand=Category'
+    const requestUrl = `${APIEndpoint}?${fields}`;
+    console.log(requestUrl)
 
     $.ajax({
-        url: requestItemCountURL,
+        url: requestUrl,
         type: "GET",
         headers: {
             "accept": "application/json;odata=verbose"
         },
         async: false,
-        success: function (data) {  
-            console.log(data.d.results);
-            fillAdvertisementData(data.d.results[0]);
-        },  
+        success: function (data) {
+            console.log(data.d);
+            listItemType = data.d.__metadata.type;
+            fillAdvertisementData(data.d);
+        },
         error: function (err) {
             console.log("There was an error" + err);
+            $('div.container > div.title').html('Item you are looking for does not exist...');
         }
     });
+
 }

@@ -13,6 +13,9 @@ var isCurrentUserAdmin = isGroupMember(_spPageContextInfo.webAbsoluteUrl, curren
 if(isCurrentUserAdmin){
     $('.choices-inp').removeClass('inactive');
 }
+else{
+    $('.choices-inp').remove();
+}
 
 var selectedCategoryId = 0;
 var isLookingActiveAds = true;
@@ -31,15 +34,15 @@ const displayCategories = () => {
         url: requestURL,
         type: "GET",
         headers: {
-           "accept": "application/json;odata=verbose"
+            "accept": "application/json;odata=verbose"
         },
         success: function (data) {
             fillCategories(data.d.results);       
         },
         error: function (err) {
-           console.log("There was an error" + err);
+            console.log("There was an error" + err);
         }
-     });
+    });
 }
 
 const fillCategories = (items) => {
@@ -106,7 +109,6 @@ const displayAdvertisements = (page) => {
         async: false,
         success: function (data) {
             fillPager(data.d.__count); 
-            console.log('new page count = ' + pageCount)   
         },  
         error: function (err) {
             console.log("There was an error" + err);
@@ -121,22 +123,21 @@ const displayAdvertisements = (page) => {
 
     const skipToken = `&$skip=${(page - 1) * pageSize}&$top=${pageSize}` 
     const requestItemsURL = `${AdvertisementsAPIEndpoint}?${filter}${skipToken}`;
-    console.log(requestItemsURL);
-     $.ajax({
+
+    $.ajax({
         url: requestItemsURL,
         type: "GET",
         headers: {
-           "accept": "application/json;odata=verbose"
+            "accept": "application/json;odata=verbose"
         },
-        async: false,
         success: function (data) {
             console.log(data)
             fillAdvertisements(data.d);   
         },
         error: function (err) {
-           console.log("There was an error" + err);
+            console.log("There was an error" + err);
         }
-     });
+    });
 }
 
 const fillPager = (itemsCount) => {
@@ -164,7 +165,7 @@ const fillPager = (itemsCount) => {
             `<li id="${i}" class="${elClass}"><a  href="#${i}" onclick="paginate(${i}, this)">${i}</a></li>`
         );
 
-        }
+    }
 
     pager.append(
         `<li id="next" class="filter"><a  href="#next" onclick="paginateNext()">Next</a></li>`
@@ -193,19 +194,6 @@ const getListProperty = (listName, itemId, propertyName) => {
 
     return result;
     
-}
-
-// TODO: DELETE
-const fillCategories1 = (items) => {
-    
-    let optionsContainer = $('#Categories');
-    let optionsHTML = `<option value="">Any</option>`;
-
-    $.each(items, function (index, item) {
-        optionsHTML += `<option value="">${item.Title}</option>`;
-    });
-
-    optionsContainer.html(optionsHTML);
 }
 
 const fillAdvertisements = (items) => {
@@ -325,6 +313,4 @@ $(document).ready( function() {
     displayCategories();
     displayAdvertisements(currentPage);
     
- });
-
-
+});

@@ -1875,6 +1875,10 @@ p > a:hover{
 	margin-right: 15px;
 }
 
+.inactive{
+	display: none;
+}
+
 .choices > .choice {
 	font-size: 18px;
 	background-color: rgb(201, 201, 201);
@@ -1891,6 +1895,18 @@ p > a:hover{
 .choices > .choice.active {
 	background-color: #f68c28;
 	color: #FFF;
+}
+
+.btn.publish{
+	outline: none;
+	text-decoration: none;
+	color:white;
+}
+
+.btn.publish:visited{
+	outline: none;
+	text-decoration: none;
+	color:white;
 }
 
 .ch {
@@ -1930,14 +1946,3 @@ p > a:hover{
 .inp > .label {
 	margin-right: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-

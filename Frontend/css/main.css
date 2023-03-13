@@ -1875,7 +1875,7 @@ p > a:hover{
 	margin-right: 15px;
 }
 
-.choices-inp.inactive{
+.inactive{
 	display: none;
 }
 
@@ -1895,6 +1895,18 @@ p > a:hover{
 .choices > .choice.active {
 	background-color: #f68c28;
 	color: #FFF;
+}
+
+.btn.publish{
+	outline: none;
+	text-decoration: none;
+	color:white;
+}
+
+.btn.publish:visited{
+	outline: none;
+	text-decoration: none;
+	color:white;
 }
 
 .ch {
@@ -1934,14 +1946,3 @@ p > a:hover{
 .inp > .label {
 	margin-right: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-

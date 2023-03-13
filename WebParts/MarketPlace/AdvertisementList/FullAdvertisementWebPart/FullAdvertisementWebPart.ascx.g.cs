@@ -78,38 +78,44 @@ namespace AdvertisementList.FullAdvertisementWebPart {
                         "\t\t\t<div class=\"row desk-photos\">\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=" +
                         "\"text\">\r\n\t\t\t\t\t\t\t\t\t<p>Pending</p>\r\n\t\t\t\t\t\t\t\t\t<a href=\"\" class=\"link\">Contact</a>\r\n" +
                         "\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col" +
-                        "-md-3 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"aside aside-moved-top\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<d" +
-                        "iv class=\"aside-box fast-links\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">Быстрые" +
-                        " ссылки</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Анонсы</a></li" +
-                        ">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Оргструктура</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Онлайн" +
-                        " библиотека</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Объявления</a></li>\r\n\t\t\t\t\t\t\t\t</ul>" +
-                        "\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"like\">Скажи спасибо</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div " +
-                        "class=\"aside-box birthday-box\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">Ближайши" +
-                        "е дни рождения</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div c" +
-                        "lass=\"img\"><a href=\"\"><img src=\"../_layouts/15/AdvertisementList/img/face.png\" a" +
-                        "lt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"date\">26 ма" +
-                        "рта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=\"\">Анна Ефремова</a></div>\r\n\t\t\t\t" +
-                        "\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t" +
-                        "\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"img\"><a href=\"\"><img src=\"../_layouts/15/Advertis" +
-                        "ementList/img/face.png\" alt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t" +
-                        "\t\t<div class=\"date\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=\"\">Анна" +
-                        " Ефремова</a></div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div" +
-                        ">\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"more-link\">Показать " +
-                        "больше</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t<" +
-                        "/div>\r\n\t</div>\r\n\t<div class=\"footer footer-inner\">\r\n\t\t<div class=\"container\">\r\n\t" +
-                        "\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm-12\">\r\n\t\t\t\t\t<div class=\"wrap\">\r\n\t\t\t\t\t" +
-                        "\t<div class=\"copy\">© 2018 РН Банк. Корпоративный портал сотрудников банка.</div>" +
-                        "\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!--[if lt" +
-                        " IE 9]>\r\n\t<script src=\"libs/html5shiv/es5-shim.min.js\"></script>\r\n\t<script src=\"" +
-                        "libs/html5shiv/html5shiv.min.js\"></script>\r\n\t<script src=\"libs/html5shiv/html5sh" +
-                        "iv-printshiv.min.js\"></script>\r\n\t<script src=\"libs/respond/respond.min.js\"></scr" +
-                        "ipt>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_layouts/15/AdvertisementList/libs/jquer" +
-                        "y/jquery-1.11.2.min.js\"></script>\r\n    <script src=\"../_layouts/15/Advertisement" +
-                        "List/utils/helper.js\"></script>\r\n    <script src=\"../_layouts/15/AdvertisementLi" +
-                        "st/js/fullAdvertisement.js\"></script>\r\n\t<script src=\"../_layouts/15/Advertisemen" +
-                        "tList/libs/plugins-scroll/plugins-scroll.js\"></script>\r\n\t<script src=\"../_layout" +
-                        "s/15/AdvertisementList/js/owl.carousel.js\"></script>\r\n\t<script src=\"../_layouts/" +
-                        "15/AdvertisementList/js/common.js\"></script>\r\n\t\r\n</body>\r\n</html>"));
+                        "-md-3 col-sm-12\">\r\n\t\t\t\t\t\t<div class=\"aside aside-moved-top\">\r\n\t\t\t\t\t\t\t <div class" +
+                        "=\"aside-box news-archive inactive\" id=\"admin-panel\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-" +
+                        "title title\" id=\"status\">Pending</div>\r\n\t\t\t\t\t\t\t\t<a href=\"#change\" class=\"btn pub" +
+                        "lish\" id=\"changeStatus\" onclick=\"publishAdvertisement()\">Pending</a>\r\n\t\t\t\t\t\t\t\t<u" +
+                        "l class=\"month-list\">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\" id=\"edit\">Редактировать</a></li>\r" +
+                        "\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">В архив</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"#delete\" onclic" +
+                        "k=\"deleteAdvertisement()\">Удалить</a></li  \r\n\t\t\t\t\t\t\t    </ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t" +
+                        "\t\t\t\t\t<div class=\"aside-box fast-links\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">" +
+                        "Быстрые ссылки</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Анонсы<" +
+                        "/a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Оргструктура</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\"" +
+                        ">Онлайн библиотека</a></li>\r\n\t\t\t\t\t\t\t\t\t<li><a href=\"\">Объявления</a></li>\r\n\t\t\t\t\t\t" +
+                        "\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"like\">Скажи спасибо</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t" +
+                        "\t\t<div class=\"aside-box birthday-box\">\r\n\t\t\t\t\t\t\t\t<div class=\"aside-title title\">Б" +
+                        "лижайшие дни рождения</div>\r\n\t\t\t\t\t\t\t\t<ul class=\"list\">\r\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t" +
+                        "\t<div class=\"img\"><a href=\"\"><img src=\"../_layouts/15/AdvertisementList/img/face" +
+                        ".png\" alt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"date" +
+                        "\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=\"\">Анна Ефремова</a></div" +
+                        ">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r" +
+                        "\n\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"img\"><a href=\"\"><img src=\"../_layouts/15/A" +
+                        "dvertisementList/img/face.png\" alt=\"\"></a></div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"tt\">\r\n\t\t" +
+                        "\t\t\t\t\t\t\t\t\t<div class=\"date\">26 марта</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"name\"><a href=" +
+                        "\"\">Анна Ефремова</a></div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"fah\">Дизайнер</div>\r\n\t\t\t\t\t\t\t\t" +
+                        "\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t<a href=\"\" class=\"more-link\">По" +
+                        "казать больше</a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</di" +
+                        "v>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"footer footer-inner\">\r\n\t\t<div class=\"contain" +
+                        "er\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-sm-12\">\r\n\t\t\t\t\t<div class=\"wrap\">" +
+                        "\r\n\t\t\t\t\t\t<div class=\"copy\">© 2018 РН Банк. Корпоративный портал сотрудников банка" +
+                        ".</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n\r\n\t<!-" +
+                        "-[if lt IE 9]>\r\n\t<script src=\"libs/html5shiv/es5-shim.min.js\"></script>\r\n\t<scrip" +
+                        "t src=\"libs/html5shiv/html5shiv.min.js\"></script>\r\n\t<script src=\"libs/html5shiv/" +
+                        "html5shiv-printshiv.min.js\"></script>\r\n\t<script src=\"libs/respond/respond.min.js" +
+                        "\"></script>\r\n\t<![endif]-->\r\n\r\n\t<script src=\"../_layouts/15/AdvertisementList/lib" +
+                        "s/jquery/jquery-1.11.2.min.js\"></script>\r\n    <script src=\"../_layouts/15/Advert" +
+                        "isementList/utils/helper.js\"></script>\r\n    <script src=\"../_layouts/15/Advertis" +
+                        "ementList/js/fullAdvertisement.js\"></script>\r\n\t<script src=\"../_layouts/15/Adver" +
+                        "tisementList/libs/plugins-scroll/plugins-scroll.js\"></script>\r\n\t<script src=\"../" +
+                        "_layouts/15/AdvertisementList/js/owl.carousel.js\"></script>\r\n\t<script src=\"../_l" +
+                        "ayouts/15/AdvertisementList/js/common.js\"></script>\r\n\t\r\n</body>\r\n</html>"));
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +

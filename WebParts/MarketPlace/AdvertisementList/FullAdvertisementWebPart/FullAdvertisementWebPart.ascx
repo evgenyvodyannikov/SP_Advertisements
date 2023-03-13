@@ -72,7 +72,15 @@
 					</div>
 					<div class="col-md-3 col-sm-12">
 						<div class="aside aside-moved-top">
-							
+							 <div class="aside-box news-archive inactive" id="admin-panel">
+								<div class="aside-title title" id="status">Pending</div>
+								<a href="#change" class="btn publish" id="changeStatus" onclick="publishAdvertisement()">Pending</a>
+								<ul class="month-list">
+									<li><a href="" id="edit">Редактировать</a></li>
+									<li><a href="">В архив</a></li>
+									<li><a href="#delete" onclick="deleteAdvertisement()">Удалить</a></li  
+							    </ul>
+							</div>
 							<div class="aside-box fast-links">
 								<div class="aside-title title">Быстрые ссылки</div>
 								<ul class="list">
