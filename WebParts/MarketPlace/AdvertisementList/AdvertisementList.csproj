@@ -98,6 +98,7 @@
       <SharePointProjectItemId>{056e5fa5-3dd3-4ab6-a202-a8b5bd5212b4}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
+    <None Include="Layouts\AdvertisementList\img\delete-icon.webp" />
     <None Include="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-theme.css.map" />
     <None Include="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap.css.map" />
     <None Include="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />

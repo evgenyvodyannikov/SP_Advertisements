@@ -1,29 +1,9 @@
 var currentUserId = _spPageContextInfo.userId;
 var isCurrentUserAdmin = isGroupMember(_spPageContextInfo.webAbsoluteUrl, currentUserId, "Avito Owners");
 
-if (isCurrentUserAdmin) {
-    $('#admin-panel').removeClass('inactive');
-    $('.aside-box.birthday-box').remove();
-}
-else {
-    $('#admin-panel').remove();
-}
-
-const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
 let currentStatus = '';
 let listItemType = null;
-
-const getQueryStringParameter = (param) => {
-    let query = window.location.search.substring(1);
-    let vars = query.split('&');
-    for (let i = 0; i < vars.length; i++) {
-        let pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) === param) {
-            return decodeURIComponent(pair[1]);
-        }
-    }
-    return null;
-}
+let isAuthor = false;
 
 const getAttachmentUrls = () => {
 
@@ -69,6 +49,20 @@ const GetAttachmentsHTML = (attachmentsUrls) => {
 
 const fillAdvertisementData = (data) => {
 
+    isAuthor = currentUserId == data.AuthorId;
+    console.log(currentUserId);
+    console.log(data.AuthorId);
+
+    if (isCurrentUserAdmin) {
+        $('#admin-panel').removeClass('inactive');
+        $('.aside-box.birthday-box').remove();
+    }
+    else if (isAuthor) {
+        $('#admin-panel').removeClass('inactive');
+        $('#changeStatus').remove();
+        $('.aside-box.birthday-box').remove();
+    }
+
     let title = $('div.container > div.title');
     let text = $('div.text > p');
     let categoryDateInfo = $('div.hh > div.date');
@@ -77,7 +71,7 @@ const fillAdvertisementData = (data) => {
     let authorName = $('div.hh > div.who > a > div.name');
     let attachments = $('div.row.desk-photos')
     let linkToUser = $('a.link')
-    let status = $('.aside-title.title');
+    let status = $('.aside-title.title#status');
     let changeBtn = $('#changeStatus');
 
     let userLink = getUserLink(data.AuthorId);
@@ -86,7 +80,7 @@ const fillAdvertisementData = (data) => {
     let dateOptions = { day: 'numeric', month: 'long' }
 
     title.html(data.Title);
-    text.html(data.AdvDescription || '');
+    text.html(data.Description || '');
 
     categoryDateInfo.html(`${dateCreated.toLocaleDateString("en-ES", dateOptions)} · ${data.Category.Title}`)
 
@@ -94,21 +88,23 @@ const fillAdvertisementData = (data) => {
     authorName.html(userInfo.Name);
     authorLink[0].href = userLink;
 
+    let ImageUrl = data.Image.replaceAll(' ', '').split(',')[0];
+
     if (data.Attachments) {
         let attachmentsUrls = getAttachmentUrls();
-        let imageSet = [data.Image.Url, ...attachmentsUrls];
+        let imageSet = [ImageUrl, ...attachmentsUrls];
         attachments.html(GetAttachmentsHTML(imageSet))
     }
     else {
-        attachments.html(GetAttachmentsHTML([data.Image.Url]))
+        attachments.html(GetAttachmentsHTML([ImageUrl]))
     }
 
     linkToUser.html(`Contact ${userInfo.Name}`)
     linkToUser[0].href = userLink;
 
     // Admin-panel 
-    status.html(`Status is ${data.Status}`);
-    if (data.Status == 'Active') {
+    status.html(`Status is ${data.Status.Value}`);
+    if (data.Status.Value == 'Active') {
         changeBtn.html('To moderation');
     }
     else {
@@ -119,10 +115,35 @@ const fillAdvertisementData = (data) => {
 
 }
 
+const deleteAdvertisement = () => {
+
+    const requestUrl = APIEndpoint;
+
+    isAccepted = confirm('Are you sure?');
+    if (isAccepted) {
+        $.ajax({
+            url: requestUrl,
+            method: "DELETE",
+            headers: {
+                "X-RequestDigest": $('#__REQUESTDIGEST').val(),
+                "X-HTTP-Method": "MERGE",
+                "If-Match": "*",
+                "Content-Type": "application/json;odata=verbose"
+            },
+            success: function (data) {
+                alert("Item delete successfully");
+                window.location.href = `${webServerUrl}`
+            },
+            error: function (error) {
+                console.error("Error updating item: " + JSON.stringify(error));
+            }
+        });
+    }
+}
+
 const publishAdvertisement = () => {
 
-    const listName = 'Advertisements';
-    const requestUrl = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items(${id})`;
+    const requestUrl = APIEndpoint;
 
     let patchStatus = currentStatus == 'Active' ? 'Moderation' : 'Active';
     let itemPayload = {
@@ -150,18 +171,19 @@ const publishAdvertisement = () => {
     });
 }
 
-let id = getQueryStringParameter("$id") || 1;
+let id = getQueryStringParameter("$id", window.location.search.substring(1)) || 1;
+const webServerUrl = _spPageContextInfo.webAbsoluteUrl;
+const APIEndpoint = `${webServerUrl}/_api/web/lists/getbytitle('Advertisements')/Items(${id})`;
 
 if (id !== null) {
 
-    const listName = 'Advertisements';
-    let fields = '$select=Title, AdvDescription, AuthorId, Created, Image, Attachments, Status, Category/Title&$expand=Category'
-
-    const requestItemCountURL = `${webServerUrl}/_api/web/lists/getbytitle('${listName}')/Items(${id})?${fields}`;
-    console.log(requestItemCountURL)
+    let filter = `$filter = Id eq ${id}`;
+    let fields = '$select = Title, Description, AuthorId, Created, Image, Attachments, Status/Value, Category/Title&$expand=Category, Status'
+    const requestUrl = `${webServerUrl}/_vti_bin/listdata.svc/Advertisements?${filter}&${fields}`;
+    console.log(requestUrl)
 
     $.ajax({
-        url: requestItemCountURL,
+        url: requestUrl,
         type: "GET",
         headers: {
             "accept": "application/json;odata=verbose"
@@ -169,11 +191,13 @@ if (id !== null) {
         async: false,
         success: function (data) {
             console.log(data.d);
-            listItemType = data.d.__metadata.type;
-            fillAdvertisementData(data.d);
+            listItemType = data.d.results[0].__metadata.type;
+            fillAdvertisementData(data.d.results[0]);
         },
         error: function (err) {
             console.log("There was an error" + err);
+            $('div.container > div.title').html('Item you are looking for does not exist...');
         }
     });
+
 }

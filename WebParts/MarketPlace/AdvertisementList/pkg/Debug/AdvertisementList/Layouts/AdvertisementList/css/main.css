@@ -1866,6 +1866,16 @@ p > a:hover{
 	margin-top: 5px;
 }
 
+.edit-title {
+	width: 70%;
+	font-size: 18px;
+}
+
+.edit-description {
+	width: 70%;
+	font-size: 18px;
+}
+
 .inp {
 	display: block;
 }
@@ -1945,4 +1955,15 @@ p > a:hover{
 
 .inp > .label {
 	margin-right: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }

@@ -81,3 +81,15 @@ const isGroupMember = (webUrl, userId, groupName) => {
     return isAdmin;
 
 };
+
+const getQueryStringParameter = (param, query) => {
+
+    let vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) === param) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    return null;
+}

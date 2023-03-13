@@ -1,4 +1,4 @@
-﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
+﻿p<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> 
 <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> 
 <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -39,10 +39,10 @@
 				<ul class="pagin">
 					<li><a href="">Главная</a></li>
 				</ul>
-				<div class="title">Редактирование объявления</div>
+				<div class="title">Pending</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container inactive" id="main">
 			<div class="two-columns">
 				<div class="row">
 					<div class="col-md-9 col-sm-12">
@@ -52,36 +52,24 @@
 								<form action="" class="default-form edit-form">
 									<div class="row-inp">
 										<p class="label">Заголовок</p>
-										<input type="text">
+										<input type="text" class="edit-title">
 									</div>
 									<div class="row-inp">
 										<p class="label">Категории</p>
-										<select class="cat-select">
-											<option value=""></option>
-											<option value="">Категории</option>
+										<select class="form-control" id="Categories">
+											<option value="" disabled>Pending</option>
 										</select>
 									</div>
 									<div class="row-inp">
 										<p class="label">Описание</p>
-										<textarea></textarea>
+										<textarea class="edit-description"></textarea>
 									</div>
 									<div class="row-inp">
-										<p class="label">Фотографии, не более 3</p>
-										<div class="file">
-											<input id="file4" type="file" title="Загрузите фото" />
-											<span class="file-input-text">name.png</span>
-										</div>
+										<label for="file-upload" class="custom-file-upload">Select images (3 or less)</label>
+                                        <input id="file-upload" type="file"/>
 									</div>
 									<div class="row-inp">
 										<ul class="download-images">
-											<li>
-												<img src="../_layouts/15/AdvertisementList/img/2.png" alt="">
-												<span class="delete"></span>
-											</li>
-											<li>
-												<img src="../_layouts/15/AdvertisementList/img/2.png" alt="">
-												<span class="delete"></span>
-											</li>
 										</ul>
 									</div>
 									<div class="row-inp">
@@ -96,12 +84,11 @@
 					<div class="col-md-3 col-sm-12">
 						<div class="aside aside-moved-top">
 							<div class="aside-box news-archive">
-								<div class="aside-title title">Объявление на модерации</div>
-								<a href="" class="btn">Опубликовать</a>
+								<div class="aside-title title" id="status">Pending</div>
+								<a href="#change" class="btn publish" id="changeStatus" onclick="publishAdvertisement()">Опубликовать</a>
 								<ul class="month-list">
-									<li><a href="">Редактировать</a></li>
 									<li><a href="">В архив</a></li>
-									<li><a href="">Удалить</a></li>
+									<li><a href="#delete" onclick="deleteAdvertisement()">Удалить</a></li  
 								</ul>
 							</div>
 						</div>
@@ -132,6 +119,8 @@
 	<![endif]-->
 
 	<script src="../_layouts/15/AdvertisementList/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="../_layouts/15/AdvertisementList/utils/helper.js"></script>
+    <script src="../_layouts/15/AdvertisementList/js/editAdvertisement.js"></script>
 	<script src="../_layouts/15/AdvertisementList/libs/plugins-scroll/plugins-scroll.js"></script>
 	<script src="../_layouts/15/AdvertisementList/js/owl.carousel.js"></script>
 	<script src="../_layouts/15/AdvertisementList/js/common.js"></script>

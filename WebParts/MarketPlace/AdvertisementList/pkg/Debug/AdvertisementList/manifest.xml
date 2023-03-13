@@ -10,6 +10,7 @@
     </Assembly>
   </Assemblies>
   <TemplateFiles>
+    <TemplateFile Location="Layouts\AdvertisementList\img\delete-icon.webp" />
     <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap-theme.css.map" />
     <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\css\bootstrap.css.map" />
     <TemplateFile Location="Layouts\AdvertisementList\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
